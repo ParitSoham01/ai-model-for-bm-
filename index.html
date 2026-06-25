@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BlinkMoney F.I.B. — Financial Intelligence Bureau</title>
+  <meta name="description" content="Confidential Financial Intelligence Assessment and Money MRI Diagnostic Scanner by BlinkMoney.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,600;0,800;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+  
+  <!-- Premium Background Systems -->
+  <div class="glow-bg"></div>
+  <div class="radar-bg">
+    <div class="radar-circle"></div>
+    <div class="radar-circle"></div>
+    <div class="radar-circle"></div>
+    <div class="radar-sweep"></div>
+  </div>
+  <div class="particle-container" id="particleContainer"></div>
+
+  <!-- Main Sound System Toggle -->
+  <button class="sound-toggle" id="soundToggle" title="Toggle audio feedback">
+    <span class="sound-icon">🔊</span>
+  </button>
+
+  <div class="app-shell">
+    
+    <!-- Top System Header -->
+    <header class="system-header">
+      <div class="logo-area">
+        <span class="status-indicator"></span>
+        <span class="logo-text">BLINKMONEY F.I.B.</span>
+      </div>
+      <div class="case-number" id="headerCaseNum">CASE #BM-2026-PENDING</div>
+    </header>
+
+    <main class="screen-container">
+      
+      <!-- SCREEN 0: CASE INITIATION & TIMELINE STORY -->
+      <section class="screen active" id="screenCaseInitiation">
+        <div class="case-file-wrapper initiation-split-layout">
+          
+          <!-- Big Detective Cutout intro -->
+          <div class="detective-intro-cutout">
+            <div class="detective-full-bust"></div>
+            <div class="detective-speech">
+              <span class="speech-glow"></span>
+              <p>"I'm Agent Cooper, head of F.I.B. Open the case file to begin the investigation into your daily financial leaks."</p>
+            </div>
+          </div>
+
+          <div class="case-folder" id="caseFolder">
+            <div class="folder-tab">CASE FILE</div>
+            <div class="folder-front">
+              <div class="stamp-classified">CLASSIFIED</div>
+              <div class="badge-seal">🛡️</div>
+              <h2 class="folder-title">FINANCIAL INTEGRITY FILE</h2>
+              <div class="folder-meta">
+                <div class="meta-row"><span>CASE ID:</span> <span class="mono text-bright">#BM-2026-78421</span></div>
+                <div class="meta-row"><span>STATUS:</span> <span class="mono text-warn">PENDING OPENING</span></div>
+                <div class="meta-row"><span>LEVEL:</span> <span class="mono">CONFIDENTIAL</span></div>
+              </div>
+              <div class="onboarding-form">
+                <div id="formErrorLabel" style="color: #8a1414; font-size: 11px; font-weight: 800; text-align: center; display: none; margin-bottom: 10px;"></div>
+                <div class="input-group">
+                  <label for="inputName">SUBJECT FIRST NAME</label>
+                  <input type="text" id="inputName" placeholder="e.g. Rahul" required autocomplete="off">
+                </div>
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="inputAge">AGE</label>
+                    <input type="number" id="inputAge" placeholder="23" min="15" max="80" required>
+                  </div>
+                  <div class="input-group">
+                    <label for="inputOccupation">OCCUPATION</label>
+                    <input type="text" id="inputOccupation" placeholder="e.g. Developer" required autocomplete="off">
+                  </div>
+                </div>
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="inputGoal">DREAM GOAL</label>
+                    <select id="inputGoal">
+                      <option value="KTM Duke">🏍️ KTM Duke Bike</option>
+                      <option value="Electric SUV">🚗 Electric SUV Car</option>
+                      <option value="Goa Trip">✈️ Goa Vacation</option>
+                      <option value="Dream Home">🏡 Apartment Downpayment</option>
+                      <option value="Wedding">💍 Grand Wedding</option>
+                      <option value="Financial Freedom">💰 Financial Freedom Fund</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="inputGoalCost">EST. COST (₹)</label>
+                    <input type="number" id="inputGoalCost" placeholder="250000" min="10000" required>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-primary ripple-btn" id="btnOpenCase">Open Case File</button>
+            </div>
+            
+            <div class="folder-inside" id="folderInside">
+              <div class="akimbo-story">
+                <h3 class="story-header">Akimbo Wealth Intelligence Directive</h3>
+                <div class="story-paragraph">
+                  Most people believe wealth is created by income.
+                </div>
+                <div class="story-paragraph highlight-bright">
+                  That isn't true.
+                </div>
+                <div class="story-paragraph">
+                  Two people can earn the same salary. One becomes financially free. The other stays stressed for decades.
+                </div>
+                <div class="story-paragraph highlight-gold">
+                  The difference is usually invisible. Today we're going to find that difference.
+                </div>
+                <button class="btn-primary pulse-glow-btn" id="btnBeginInvestigation">Begin Investigation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 1: WEALTH ASSESSMENT & CATEGORIES -->
+      <section class="screen" id="screenAssessment">
+        <div class="interview-layout">
+          <!-- Chat Area -->
+          <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+              <!-- Animated messages will appear here -->
+            </div>
+            <div class="chat-options-area" id="chatOptions">
+              <!-- Clickable choices will render here dynamically -->
+            </div>
+          </div>
+
+          <!-- Live DNA Map Sidebar (Bloomberg Style) -->
+          <div class="dna-hud-sidebar">
+            <div class="hud-box">
+              <h4 class="hud-box-title">DNA INTELLIGENCE PROFILE</h4>
+              <div class="hud-data-row">
+                <span>SUBJECT NAME:</span>
+                <span class="mono text-bright" id="hudName">Rahul</span>
+              </div>
+              <div class="hud-data-row">
+                <span>INVESTIGATION PHASE:</span>
+                <span class="mono text-warn">DISCOVERY</span>
+              </div>
+              <div class="hud-progress-container">
+                <span class="hud-progress-label">INTELLIGENCE SYNC RATE</span>
+                <div class="hud-progress-bar"><div class="hud-progress-fill" id="dnaSyncBar" style="width: 25%"></div></div>
+                <span class="hud-progress-val mono" id="dnaSyncVal">25%</span>
+              </div>
+              <div class="dna-indicators">
+                <div class="indicator-chip" id="chipSavings">
+                  <span class="chip-status"></span>
+                  <span class="chip-label">SAVINGS PROFILE:</span>
+                  <span class="chip-val mono">SCANNING</span>
+                </div>
+                <div class="indicator-chip" id="chipInvest">
+                  <span class="chip-status"></span>
+                  <span class="chip-label">INVESTING PATH:</span>
+                  <span class="chip-val mono">SCANNING</span>
+                </div>
+                <div class="indicator-chip" id="chipMindset">
+                  <span class="chip-status"></span>
+                  <span class="chip-label">WEALTH BIAS:</span>
+                  <span class="chip-val mono">SCANNING</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Agent Cooper Thinking Log Widget -->
+            <div class="hud-box detective-thinking-box">
+              <h4 class="hud-box-title">CURRENT INVESTIGATION LOG</h4>
+              <div class="detective-portrait-area">
+                <div class="detective-cutout pose-a" id="cooperSidebarPortrait"></div>
+                <div class="thinking-chat-bubble">
+                  <div class="thinking-status" id="cooperSidebarStatus">ANALYZING SIGNALS</div>
+                  <p class="thinking-message" id="cooperSidebarMessage">Initializing cash registry scans...</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: WEALTH LEAK CATEGORIES -->
+      <section class="screen" id="screenLeaks">
+        <div class="center-content">
+          <div class="eyebrow">DIAGNOSTIC TARGETS</div>
+          <h2 class="section-title">Select leaks active in your daily life</h2>
+          <p class="section-desc">Which category is most likely bleeding your future wealth? Select all that apply.</p>
+          
+          <div class="leaks-grid">
+            <div class="leak-card" data-category="food">
+              <div class="leak-card-icon">🍔</div>
+              <div class="leak-card-title">Food & Convenience</div>
+              <div class="leak-card-desc">Swiggy, Zomato, Starbucks, snacks</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+            <div class="leak-card" data-category="lifestyle">
+              <div class="leak-card-icon">🛍️</div>
+              <div class="leak-card-title">Lifestyle Spending</div>
+              <div class="leak-card-desc">Impulse shopping, clothing, gadgets</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+            <div class="leak-card" data-category="subscriptions">
+              <div class="leak-card-icon">📺</div>
+              <div class="leak-card-title">Subscriptions</div>
+              <div class="leak-card-desc">Netflix, Spotify, Cloud, ChatGPT, Gym</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+            <div class="leak-card" data-category="travel">
+              <div class="leak-card-icon">✈️</div>
+              <div class="leak-card-title">Experiences & Travel</div>
+              <div class="leak-card-desc">Weekend outings, cabs, stays</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+            <div class="leak-card" data-category="debt">
+              <div class="leak-card-icon">💳</div>
+              <div class="leak-card-title">Debt & EMIs</div>
+              <div class="leak-card-desc">No-cost EMIs, credit cards, BNPL</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+            <div class="leak-card" data-category="habits">
+              <div class="leak-card-icon">☕</div>
+              <div class="leak-card-title">Daily Habits</div>
+              <div class="leak-card-desc">Chai, cigarettes, loose daily spends</div>
+              <div class="leak-card-checkbox"></div>
+              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+            </div>
+          </div>
+
+          <button class="btn-primary transition-btn" id="btnConfirmLeaks" disabled>Lock Diagnostic Targets</button>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: INTELLIGENCE MATRIX & PRE-INVESTIGATION PREDICTION -->
+      <section class="screen" id="screenMatrix">
+        <div class="matrix-layout">
+          <div class="matrix-side">
+            <div class="eyebrow">INTELLIGENCE CONTEXT</div>
+            <h2 class="section-title">Financial Network Mapping</h2>
+            <p class="section-desc">Resolving connections between your income, goals, and categories. Pinned elements showing data flows.</p>
+            
+            <div class="matrix-prediction-box" id="predictionBox">
+              <div class="prediction-header">
+                <span class="pred-glow"></span>
+                <h4>PRE-INVESTIGATION PREDICTION</h4>
+              </div>
+              <div class="prediction-content">
+                <p class="prediction-intro">Based on your case profile and category tags, our diagnostic model predicts:</p>
+                <ul class="prediction-list">
+                  <li>🚨 <span class="text-warn">Losses undetected</span>: You are bleeding compounding capital in habits you don't track.</li>
+                  <li>💡 <span class="text-warn">Income efficiency</span>: Income isn't your hurdle; capital retention and system timing is.</li>
+                  <li>⏳ <span class="text-warn">Goal delays</span>: Your dream goal could be delayed by <strong id="predDelayYrs">4-8 years</strong>.</li>
+                </ul>
+                <div class="prediction-conclusion">Let's verify these vectors with a complete scan.</div>
+              </div>
+            </div>
+
+            <button class="btn-primary glow-red-to-green" id="btnStartScan">Run Money MRI Scan</button>
+          </div>
+
+          <div class="matrix-canvas-area">
+            <div class="hud-grid-overlay"></div>
+            <!-- Matrix Interactive Core -->
+            <div class="matrix-core">
+              <div class="matrix-node active" id="nodeIncome" style="top: 20%; left: 20%;">
+                <div class="node-glow"></div>
+                <div class="node-label">INCOME</div>
+                <div class="node-value mono" id="matrixValIncome">₹0/m</div>
+              </div>
+              <div class="matrix-node active" id="nodeSavings" style="top: 50%; left: 30%;">
+                <div class="node-glow"></div>
+                <div class="node-label">SAVINGS</div>
+                <div class="node-value mono" id="matrixValSavings">₹0/m</div>
+              </div>
+              <div class="matrix-node active" id="nodeExpenses" style="top: 30%; left: 75%;">
+                <div class="node-glow"></div>
+                <div class="node-label">EXPENSES</div>
+                <div class="node-value mono" id="matrixValExpenses">₹0/m</div>
+              </div>
+              <div class="matrix-node active" id="nodeInvestments" style="top: 75%; left: 45%;">
+                <div class="node-glow"></div>
+                <div class="node-label">INVESTMENTS</div>
+                <div class="node-value mono" id="matrixValInvestments">₹0/m</div>
+              </div>
+              <div class="matrix-node active" id="nodeGoal" style="top: 65%; left: 80%;">
+                <div class="node-glow"></div>
+                <div class="node-label">GOAL</div>
+                <div class="node-value mono" id="matrixValGoal">₹0</div>
+              </div>
+              <svg class="matrix-connections" id="matrixSVG">
+                <line x1="20%" y1="20%" x2="50%" y2="30%" class="matrix-line" />
+                <line x1="50%" y1="30%" x2="75%" y2="30%" class="matrix-line" />
+                <line x1="50%" y1="30%" x2="45%" y2="75%" class="matrix-line" />
+                <line x1="45%" y1="75%" x2="80%" y2="65%" class="matrix-line" />
+                <line x1="75%" y1="30%" x2="80%" y2="65%" class="matrix-line" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: MONEY MRI SCAN -->
+      <section class="screen" id="screenScan">
+        <div class="scan-wrapper">
+          <div class="scanner-header">
+            <h1 class="scanner-title mono text-bright">MONEY MRI DIAGNOSTIC SCANNER</h1>
+            <div class="scanner-subtitle">CONFIDENTIAL SYSTEM ACTIVE · ANALYZING VECTORS</div>
+          </div>
+
+          <div class="scan-visuals">
+            <div class="scan-overlay-grid"></div>
+            <div class="scan-laser-line"></div>
+            <div class="scan-radar-disk">
+              <div class="radar-line"></div>
+            </div>
+            <div class="scan-dna-helix">🧬</div>
+          </div>
+
+          <div class="scan-console">
+            <div class="console-header">
+              <span class="console-dot text-bright">●</span>
+              <span class="mono">SYSTEM DIAGNOSTIC LOG</span>
+            </div>
+            <div class="console-body" id="consoleBody">
+              <!-- Logs print dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 5: REVELATIONS DASHBOARD (Scroll-driven Reports & DNA) -->
+      <section class="screen" id="screenRevelations">
+        
+        <!-- Progressive Discovery Click Overlay -->
+        <div class="discovery-overlay" id="discoveryOverlay">
+          <div class="discovery-card card" id="discoveryCard">
+            <div class="discovery-indicator mono">DIAGNOSTIC REVELATION</div>
+            <div class="discovery-text" id="discoveryText">Hmm... AI detected something unusual.</div>
+            <button class="btn-primary ripple-btn" id="btnNextDiscovery">Continue ➔</button>
+          </div>
+        </div>
+
+        <!-- The Full Dashboard -->
+        <div class="dashboard-layout" id="dashboardLayout">
+          
+          <div class="dashboard-summary-bar">
+            <div class="summary-badge green-badge">INVESTIGATION SUCCESSFUL</div>
+            <div class="summary-meta">
+              <span class="mono text-muted">SUBJECT:</span> <span id="dashName">Rahul</span> | 
+              <span class="mono text-muted">RISK GRADE:</span> <span class="text-warn mono">HIGH RISK</span>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            
+            <!-- 1. Investigation Report -->
+            <div class="report-box card" id="cardReport">
+              <div class="box-header">
+                <span class="mono text-bright">REP-01</span>
+                <h3>FINANCIAL INVESTIGATION REPORT</h3>
+              </div>
+              <div class="findings-summary">
+                <div class="finding-metric">
+                  <div class="finding-label">Hidden Wealth Found</div>
+                  <div class="finding-val mono text-bright" id="valHiddenWealth">₹0</div>
+                  <div class="finding-sub">Unsaved liquid leaks yearly</div>
+                </div>
+                <div class="finding-metric">
+                  <div class="finding-label">Total Leakage Rate</div>
+                  <div class="finding-val mono text-warn" id="valMonthlyLeaks">₹0/m</div>
+                  <div class="finding-sub">In targeted categories</div>
+                </div>
+              </div>
+              <div class="findings-table">
+                <div class="table-row">
+                  <span>Target Leak Categories</span>
+                  <span class="mono text-bright" id="valTotalLeaksCount">0</span>
+                </div>
+                <div class="table-row">
+                  <span>Opportunity Wealth Loss (10y)</span>
+                  <span class="mono text-warn" id="valTotalLoss">₹0</span>
+                </div>
+                <div class="table-row">
+                  <span>Estimated Goal Delay</span>
+                  <span class="mono text-warn" id="valGoalDelay">0 Months</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Financial DNA -->
+            <div class="report-box card" id="cardDNA">
+              <div class="box-header">
+                <span class="mono text-bright">DNA-02</span>
+                <h3>FINANCIAL DNA REPORT</h3>
+              </div>
+              <div class="dna-profile-grid">
+                <div class="detective-avatar pose-alt-a" style="width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%;"></div>
+                <div class="dna-title-block">
+                  <span class="text-muted">PRIMARY FINANCIAL IDENTITY</span>
+                  <h4 id="dnaIdentityName" class="text-bright">THE DELAYED MILLIONAIRE</h4>
+                </div>
+                <div class="dna-attributes">
+                  <div class="attr-row"><span>Wealth Superpower</span><strong id="dnaSuperpower" class="text-bright">High Earning Potential</strong></div>
+                  <div class="attr-row"><span>Growth Blocker</span><strong id="dnaBlocker" class="text-warn">Inconsistent Investing</strong></div>
+                  <div class="attr-row"><span>Decision Style</span><strong id="dnaStyle">Reactive</strong></div>
+                  <div class="attr-row"><span>Future Risk</span><strong id="dnaRisk" class="text-warn">Lifestyle Inflation</strong></div>
+                  <div class="attr-row"><span>Current Wealth Level</span><strong id="dnaLevel" class="text-gold">Level 4 / 10</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Financial Twin -->
+            <div class="report-box card span-2" id="cardTwin">
+              <div class="box-header">
+                <span class="mono text-bright">TWIN-03</span>
+                <h3>MEET YOUR FINANCIAL TWIN</h3>
+              </div>
+              <div class="twins-comparison">
+                <div class="twin-panel current-twin">
+                  <div class="twin-icon">🔴</div>
+                  <h4>CURRENT TWIN</h4>
+                  <div class="twin-desc">Saves occasionally, invests inconsistently. Disappearing convenience cash.</div>
+                  <div class="twin-stat-list">
+                    <div class="twin-stat"><span>1st Crore Year:</span> <strong class="mono text-warn" id="twinCurrentCrore">2058</strong></div>
+                    <div class="twin-stat"><span>Wealth at Age 35:</span> <strong class="mono" id="twinCurrent35">₹0</strong></div>
+                    <div class="twin-stat"><span>Monthly Leakage:</span> <strong class="mono text-warn" id="twinCurrentLeak">₹4,500</strong></div>
+                  </div>
+                </div>
+                <div class="twin-divider">VS</div>
+                <div class="twin-panel optimized-twin">
+                  <div class="twin-icon">🟢</div>
+                  <h4>OPTIMIZED TWIN</h4>
+                  <div class="twin-desc">Recovers category leaks, starts automated system investments today.</div>
+                  <div class="twin-stat-list">
+                    <div class="twin-stat"><span>1st Crore Year:</span> <strong class="mono text-bright" id="twinOptCrore">2050</strong></div>
+                    <div class="twin-stat"><span>Wealth at Age 35:</span> <strong class="mono text-bright" id="twinOpt35">₹0</strong></div>
+                    <div class="twin-stat"><span>Years Saved:</span> <strong class="mono text-gold" id="twinSavedYrs">8 Years</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Wealth Leakage Charge Sheet -->
+            <div class="report-box card" id="cardChargeSheet">
+              <div class="box-header">
+                <span class="mono text-warn">COUNT-04</span>
+                <h3>WEALTH LEAKAGE CHARGE SHEET</h3>
+              </div>
+              <div class="charge-sheet-body" id="chargeSheetBody">
+                <!-- Dynamically filled with selected category leaks & opportunity cost -->
+              </div>
+            </div>
+
+            <!-- 5. Lost Wealth Invoice -->
+            <div class="report-box card" id="cardInvoice">
+              <div class="box-header">
+                <span class="mono text-warn">INV-05</span>
+                <h3>LOST WEALTH INVOICE</h3>
+              </div>
+              <div class="invoice-box">
+                <div class="invoice-logo">FUTURE SELF INVOICE INC.</div>
+                <div class="invoice-meta">
+                  <div><strong>TO:</strong> Present Self (<span id="invoiceName">Rahul</span>)</div>
+                  <div><strong>FROM:</strong> Future Self (Year 2036)</div>
+                </div>
+                <div class="invoice-items" id="invoiceItems">
+                  <!-- items -->
+                </div>
+                <div class="invoice-total">
+                  <span>TOTAL OUTSTANDING CAPITAL</span>
+                  <span id="invoiceTotalVal" class="mono text-warn">₹0</span>
+                </div>
+                <div class="invoice-status">PAYMENT STATUS: <span class="text-warn">STILL RECOVERABLE</span></div>
+              </div>
+            </div>
+
+            <!-- 6. Wealth Time Machine -->
+            <div class="report-box card" id="cardTimeMachine">
+              <div class="box-header">
+                <span class="mono text-gold">TIME-06</span>
+                <h3>WEALTH TIME MACHINE™</h3>
+              </div>
+              <div class="time-machine-body">
+                <div class="tm-scenario">
+                  <div class="tm-scenario-label">IF YOU STARTED 3 YEARS AGO:</div>
+                  <div class="tm-scenario-value mono text-muted" id="tmStarted3YrsAgo">₹0</div>
+                  <p class="tm-scenario-desc">Capital you would have in your bank today.</p>
+                </div>
+                <div class="tm-scenario border-top">
+                  <div class="tm-scenario-label">IF YOU START TODAY (NEXT 3 YEARS):</div>
+                  <div class="tm-scenario-value mono text-bright" id="tmStartsToday">₹0</div>
+                  <p class="tm-scenario-desc">Capital you will accumulate in 3 years.</p>
+                </div>
+                <div class="tm-gap-highlight">
+                  <span>COMPELLED TIME LOST:</span> <strong class="mono text-warn">36 MONTHS</strong>
+                </div>
+                <div class="tm-status mono text-center">STATUS: SYSTEM READY FOR CORRECTION</div>
+              </div>
+            </div>
+
+            <!-- 7. Future You Letter -->
+            <div class="report-box card" id="cardFutureLetter">
+              <div class="box-header">
+                <span class="mono text-gold">LET-07</span>
+                <h3>CONFIDENTIAL MESSAGE UNLOCKED</h3>
+              </div>
+              <div class="envelope-container" id="letterEnvelope">
+                <div class="envelope-seal">💌</div>
+                <div class="envelope-label">LETTER FROM FUTURE YOU</div>
+                <button class="btn-primary btn-sm" id="btnReadLetter">Read Letter</button>
+              </div>
+              <div class="letter-content" id="letterContent" style="display:none;">
+                <div class="letter-date">June 25, 2036</div>
+                <p>Dear <span id="letterName" class="text-bright">Rahul</span>,</p>
+                <p>I am writing this from 2036. Looking back, you had enough income. You had enough opportunities. The only thing missing was a system.</p>
+                <p class="highlight-gold">You spent thousands on things you barely remember today, while my security was delayed.</p>
+                <p>The good news? You still have time. Every small decision you make today changes my life. Please start sooner.</p>
+                <div class="letter-sign">— Future You</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="dashboard-footer-actions">
+            <button class="btn-primary pulse-glow-btn" id="btnGoToSimulator">Proceed to Future Simulation ➔</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 6: FUTURE SIMULATOR REDESIGN -->
+      <section class="screen" id="screenSimulator">
+        <div class="simulator-layout">
+          <!-- Left side: Timeline path visualization -->
+          <div class="sim-visual-side">
+            <div class="eyebrow">DYNAMIC TIMELINE PROJECTIONS</div>
+            <h2 class="section-title">Timeline Pathways</h2>
+            
+            <div class="pathway-diagram">
+              <div class="path-lane" id="laneCurrent">
+                <div class="lane-label">CURRENT TIMELINE (No Changes)</div>
+                <div class="lane-line red-glow"><div class="lane-pulser"></div></div>
+                <div class="lane-endpoint mono text-warn" id="endpointCurrent">₹5.2 Lakhs</div>
+              </div>
+              <div class="path-lane" id="laneRecovery">
+                <div class="lane-label">RECOVERY TIMELINE (Reclaiming Leaks)</div>
+                <div class="lane-line yellow-glow"><div class="lane-pulser"></div></div>
+                <div class="lane-endpoint mono text-warn" id="endpointRecovery">₹16.4 Lakhs</div>
+              </div>
+              <div class="path-lane" id="laneBlink">
+                <div class="lane-label">BLINKMONEY TIMELINE (Compounded Action)</div>
+                <div class="lane-line green-glow"><div class="lane-pulser"></div></div>
+                <div class="lane-endpoint mono text-bright" id="endpointBlink">₹34.8 Lakhs</div>
+              </div>
+            </div>
+
+            <!-- Recovery Slider (Main Control) -->
+            <div class="slider-box card">
+              <div class="slider-header-row">
+                <span class="slider-title">RECOVERY ALLOCATION RATIO</span>
+                <span class="slider-pct mono text-bright" id="sliderValPct">50%</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" id="simSlider" min="0" max="100" value="50">
+              </div>
+              <div class="slider-caption text-muted">
+                Reclaiming <strong class="text-bright" id="reclaimAmtVal">₹2,400</strong> from monthly leaks of <span id="reclaimTotalVal">₹4,800</span>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: Real-time projection metrics -->
+          <div class="sim-metrics-side">
+            <div class="hud-box">
+              <h3 class="box-header-title">REAL-TIME TIMELINE METRICS</h3>
+              <div class="sim-metrics-grid">
+                <div class="metric-hud-cell">
+                  <div class="m-hud-label">Wealth at Age 35</div>
+                  <div class="m-hud-val mono text-bright" id="simValAge35">₹0</div>
+                </div>
+                <div class="metric-hud-cell">
+                  <div class="m-hud-label">Wealth at Age 45</div>
+                  <div class="m-hud-val mono text-bright" id="simValAge45">₹0</div>
+                </div>
+                <div class="metric-hud-cell">
+                  <div class="m-hud-label">First Crore Year</div>
+                  <div class="m-hud-val mono text-gold" id="simValCroreYrs">2054</div>
+                </div>
+                <div class="metric-hud-cell">
+                  <div class="m-hud-label">Goal Target Achievement</div>
+                  <div class="m-hud-val mono text-bright" id="simValGoalDate">Aug 2028</div>
+                </div>
+                <div class="metric-hud-cell span-2-cell">
+                  <div class="m-hud-label">Financial Freedom Arrival</div>
+                  <div class="m-hud-val mono text-gold" id="simValFreedom">2048 (Saved 10 Years)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="simulator-cta">
+              <button class="btn-primary ripple-btn" id="btnGenerateArtifacts">Generate Verified Artifacts</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 7: ARTIFACT VAULT & BLUEPRINT -->
+      <section class="screen" id="screenVault">
+        
+        <!-- Artifact Loading overlay -->
+        <div class="vault-loading-overlay" id="vaultLoading">
+          <div class="loader-card card">
+            <h3 class="loader-title mono text-bright">SECURING FINANCIAL ARTIFACTS</h3>
+            <div class="loader-steps">
+              <div class="loader-step" id="lStepStamp"><span class="step-bullet">○</span> STAMP APPLIED</div>
+              <div class="loader-step" id="lStepVerify"><span class="step-bullet">○</span> CERTIFICATE VERIFIED</div>
+              <div class="loader-step" id="lStepSignature"><span class="step-bullet">○</span> SIGNATURE ADDED</div>
+              <div class="loader-step" id="lStepArchive"><span class="step-bullet">○</span> ARCHIVE SAVED</div>
+            </div>
+            <div class="loader-progress-container">
+              <div class="loader-progress-bar"><div class="loader-progress-fill" id="loaderFill" style="width: 0%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vault-wrapper">
+          <div class="eyebrow text-center">PERSONAL RECORD OFFICE</div>
+          <h2 class="section-title text-center">F.I.B. Financial Artifact Vault</h2>
+          <p class="section-desc text-center">Click any artifact to open, verify details, and download for sharing.</p>
+
+          <div class="vault-grid">
+            
+            <!-- Document Items in the Vault -->
+            <div class="vault-item" data-artifact="fitness">
+              <div class="v-thumb">🏆</div>
+              <div class="v-title">Fitness Certificate</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="dna">
+              <div class="v-thumb">🧬</div>
+              <div class="v-title">Financial DNA Card</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="time_machine">
+              <div class="v-thumb">⏳</div>
+              <div class="v-title">Time Machine Report</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="passport">
+              <div class="v-thumb">🛂</div>
+              <div class="v-title">1st Crore Passport</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="future_letter">
+              <div class="v-thumb">✉️</div>
+              <div class="v-title">Future You Letter</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="missing_wealth">
+              <div class="v-thumb">🚨</div>
+              <div class="v-title">Missing Person Report</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="goal_license">
+              <div class="v-thumb">🎯</div>
+              <div class="v-title">Goal License</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="recovery_order">
+              <div class="v-thumb">📋</div>
+              <div class="v-title">Recovery Order</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="investigation">
+              <div class="v-thumb">📄</div>
+              <div class="v-title">Investigation Report</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="twin">
+              <div class="v-thumb">👥</div>
+              <div class="v-title">Financial Twin</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="chargesheet">
+              <div class="v-thumb">⚖️</div>
+              <div class="v-title">Leakage Charge Sheet</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="invoice">
+              <div class="v-thumb">🧾</div>
+              <div class="v-title">Lost Wealth Invoice</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="potential">
+              <div class="v-thumb">📈</div>
+              <div class="v-title">Potential Certificate</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+            <div class="vault-item" data-artifact="resume">
+              <div class="v-thumb">👔</div>
+              <div class="v-title">Financial Resume</div>
+              <div class="v-status">VERIFIED</div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Blueprint Action Block -->
+          <div class="blueprint-block card">
+            <h3 class="blueprint-title text-center text-bright">YOUR WEALTH ACCELERATION BLUEPRINT</h3>
+            <p class="blueprint-intro text-center">BlinkMoney F.I.B. has prepared your core recovery actions:</p>
+            
+            <div class="blueprint-summary-grid">
+              <div class="blueprint-card">
+                <span class="b-label">Emergency Fund Goal</span>
+                <strong class="b-val mono text-bright" id="bpEmergency">₹25,000</strong>
+              </div>
+              <div class="blueprint-card">
+                <span class="b-label">Monthly Recovery Target</span>
+                <strong class="b-val mono text-bright" id="bpRecovery">₹4,500</strong>
+              </div>
+              <div class="blueprint-card">
+                <span class="b-label">Recommended SIP Rate</span>
+                <strong class="b-val mono text-gold" id="bpSIP">₹3,000/m</strong>
+              </div>
+              <div class="blueprint-card">
+                <span class="b-label">Goal Fast-Track Fund</span>
+                <strong class="b-val mono text-gold" id="bpGoalFund">₹1,500/m</strong>
+              </div>
+            </div>
+
+            <div class="blueprint-conclusion">
+              <p class="final-emotional-message">
+                "We investigated your finances, <span id="bpName">Rahul</span>. The problem was never your income. The problem was that your money had no system. Today, you found one."
+              </p>
+              <div class="blueprint-cta-group">
+                <a href="https://play.google.com/store/apps/details?id=app.blinkmoney.in" target="_blank" class="btn-primary pulse-glow-btn text-center" style="display:block; text-decoration:none;">Begin With BlinkMoney (₹21/Day)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Document View Modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Visual Artifact rendered here -->
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="btnDownloadArtifact">⬇ Download PNG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invisible Canvas Helper for Exports -->
+  <canvas id="exportCanvas" style="display: none;"></canvas>
+
+  <script src="app.js?v=2.0"></script>
+</body>
+</html>
