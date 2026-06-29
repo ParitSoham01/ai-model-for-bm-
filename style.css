@@ -2507,3 +2507,551 @@ input[type="range"]::-webkit-slider-thumb:active {
   }
 }
 
+/* ─── THRILLER MYSTERY GAME SYSTEMS ─── */
+
+/* Screen 0A: Teletype Opening Sequence */
+#screenOpeningSequence {
+  background: #000;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.terminal-wrapper {
+  width: 100%;
+  max-width: 700px;
+  background: #050d0a;
+  border: 1px solid #143d2c;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(47, 209, 120, 0.15), inset 0 0 25px rgba(0,0,0,0.95);
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+.crt-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 16, 16, 0.08);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.2s infinite;
+}
+@keyframes flicker {
+  0% { opacity: 0.08; }
+  50% { opacity: 0.12; }
+  100% { opacity: 0.09; }
+}
+.terminal-body {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.terminal-prompt {
+  color: var(--bright);
+  display: block;
+  margin-top: 24px;
+  font-weight: 800;
+  border-right: 2px solid var(--bright);
+  width: fit-content;
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--bright); }
+}
+.btn-terminal {
+  background: transparent;
+  color: var(--bright);
+  border: 1.5px solid var(--bright);
+  border-radius: 4px;
+  padding: 12px 28px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: all 0.2s ease;
+}
+.btn-terminal:hover {
+  background: rgba(47, 209, 120, 0.15);
+  box-shadow: 0 0 15px rgba(47, 209, 120, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Screen 0B: Detective Desk & Folder Redesign */
+.detective-desk-clues {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  width: 260px;
+}
+.polaroid-photo {
+  background: #fafafa;
+  padding: 12px 12px 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  transform: rotate(-4deg);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+.polaroid-photo:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+.polaroid-img {
+  width: 200px;
+  height: 200px;
+  background-image: url('detective_alt.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ddd;
+}
+.polaroid-caption {
+  margin-top: 12px;
+  color: #2b2b2b;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.pinned-note {
+  background: #fdf6b2;
+  color: #723b11;
+  padding: 16px;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  transform: rotate(3deg);
+  position: relative;
+  width: 220px;
+}
+.pinned-note .pin {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Manila Folder Coffee Stain and Stamps */
+.coffee-stain {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border: 3px double rgba(120, 80, 40, 0.18);
+  border-radius: 50%;
+  top: 15px;
+  right: 15px;
+  pointer-events: none;
+  transform: rotate(32deg);
+  filter: blur(0.5px);
+}
+.coffee-stain::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(120, 80, 40, 0.1);
+  border-radius: 50%;
+}
+
+.dossier-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.dossier-stamp {
+  position: absolute;
+  border: 3px double var(--danger);
+  color: var(--danger);
+  background: rgba(196, 164, 120, 0.95);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+  transform: rotate(-10deg) scale(3.5);
+  opacity: 0;
+  pointer-events: none;
+  right: 20px;
+  top: 15px;
+  z-index: 10;
+  transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.4), opacity 0.18s ease;
+}
+.dossier-row.stamped .dossier-stamp {
+  opacity: 0.85;
+  transform: rotate(-10deg) scale(1.15);
+}
+
+/* Suspect Board redesign */
+.suspect-lineup-grid {
+  margin-top: 20px;
+}
+.suspect-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.suspect-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+.suspect-tag-stamp {
+  position: absolute;
+  border: 3px double var(--danger);
+  color: var(--danger);
+  background: rgba(0, 0, 0, 0.9);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 8px;
+  letter-spacing: 0.05em;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(2.5);
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+}
+.suspect-card.selected .suspect-tag-stamp {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(1.15);
+}
+
+/* Evidence Collection Interrogation Room Layout */
+.evidence-room-layout {
+  grid-template-columns: 1fr 340px;
+}
+.evidence-gathering-area {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  padding: 30px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.evidence-header-block {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--surface-border);
+  padding-bottom: 16px;
+}
+.evidence-cards-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.evidence-card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+  animation: popMsg 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.evidence-stamp-acquired {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 2px solid var(--bright);
+  color: var(--bright);
+  background: rgba(14, 28, 23, 0.95);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 850;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  transform: rotate(10deg);
+  box-shadow: 0 0 8px rgba(47, 209, 120, 0.2);
+}
+.evidence-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.evidence-option-btn {
+  background: var(--surface-glow);
+  border: 1px solid var(--surface-border);
+  color: var(--text);
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.evidence-option-btn:hover {
+  border-color: var(--bright);
+  background: rgba(47, 209, 120, 0.05);
+  transform: translateX(4px);
+}
+.evidence-option-btn.selected {
+  border-color: var(--bright);
+  background: rgba(47, 209, 120, 0.12);
+  box-shadow: 0 0 10px rgba(47, 209, 120, 0.15);
+}
+
+/* ─── CASE ZERO THE MISSING FORTUNE REDESIGN STYLES ─── */
+
+/* Cold Open Crime Scene Report */
+#screenColdOpen {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.fbi-badge {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px rgba(255, 59, 48, 0.3));
+}
+
+/* Timeline registration details */
+.timeline-visual-area {
+  width: 100%;
+  max-width: 550px;
+  margin: 30px auto;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--surface-border);
+}
+.timeline-lane-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.timeline-lane-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.timeline-lane-line {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+}
+.green-glow-line {
+  background: linear-gradient(90deg, var(--bright), rgba(47, 209, 120, 0.2));
+  box-shadow: 0 0 8px rgba(47, 209, 120, 0.2);
+}
+.red-glow-line {
+  background: linear-gradient(90deg, var(--danger), rgba(255, 59, 48, 0.1));
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.2);
+}
+.timeline-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  left: 90%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px currentColor;
+}
+.green-node {
+  background: var(--bright);
+  color: var(--bright);
+}
+.red-node {
+  background: var(--danger);
+  color: var(--danger);
+}
+.fading-line {
+  animation: fadeTimeline 3s infinite alternate;
+}
+@keyframes fadeTimeline {
+  0% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+.animating-node {
+  animation: pulseNode 1.5s infinite;
+}
+@keyframes pulseNode {
+  0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 4px var(--danger); }
+  50% { transform: translateX(-50%) scale(1.4); box-shadow: 0 0 12px var(--danger); }
+  100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 4px var(--danger); }
+}
+
+/* Forensics Lab Dropzone Box */
+.upload-dropzone {
+  border: 2px dashed var(--surface-border);
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 8px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+.upload-dropzone:hover, .upload-dropzone.dragover {
+  border-color: var(--bright);
+  background: rgba(47, 209, 120, 0.04);
+  box-shadow: 0 0 15px rgba(47, 209, 120, 0.1);
+}
+.upload-icon {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+.upload-text {
+  font-size: 13px;
+  font-weight: bold;
+}
+.upload-subtext {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Bloomberg Crime Network HUD */
+.network-graph-area {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: #020705;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+.network-node-item {
+  position: absolute;
+  background: rgba(5, 13, 10, 0.9);
+  border: 1.5px solid var(--surface-border);
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+.network-node-item:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  border-color: var(--bright);
+  box-shadow: 0 0 15px rgba(47, 209, 120, 0.2);
+}
+.network-node-item.accused {
+  border-color: var(--danger);
+  background: rgba(20, 5, 5, 0.95);
+  box-shadow: 0 0 20px rgba(255, 59, 48, 0.3);
+}
+.node-icon {
+  font-size: 24px;
+}
+.node-title {
+  font-size: 9px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  margin-top: 4px;
+  line-height: 1.2;
+  color: var(--text);
+  max-width: 80px;
+  white-space: normal;
+}
+.network-node-item.accused .node-title {
+  color: var(--danger);
+}
+.network-node-item .suspect-tag-stamp {
+  position: absolute;
+  border: 1.5px solid var(--danger);
+  color: var(--danger);
+  background: rgba(0, 0, 0, 0.95);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 900;
+  padding: 1px 4px;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(2.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+}
+.network-node-item.accused .suspect-tag-stamp {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(1.05);
+}
+.network-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+.network-line {
+  stroke: var(--surface-border);
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 4;
+  transition: all 0.3s ease;
+}
+.network-line.active {
+  stroke: var(--danger);
+  stroke-width: 2px;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 3px rgba(255, 59, 48, 0.5));
+}
+.btn-secondary-outline {
+  border-color: var(--surface-border) !important;
+  color: var(--text) !important;
+}
+.btn-secondary-outline:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--bright) !important;
+  color: var(--bright) !important;
+}
+
+
+
+

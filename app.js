@@ -128,7 +128,7 @@
 
   /* ─────────────── FLOATING PARTICLES ─────────────── */
   const pContainer = document.getElementById('particleContainer');
-  const symbols = ['₹', '%', 'DNA', 'F.I.B.', '•', 'MRI'];
+  const symbols = ['₹', '%', 'DNA', 'F.B.I.', '•', 'MRI'];
   
   function createParticles() {
     for (let i = 0; i < 20; i++) {
@@ -143,6 +143,7 @@
     }
   }
   createParticles();
+  startTeletypeText();
 
   /* ─────────────── APPLICATION STATE ─────────────── */
   const state = {
@@ -176,41 +177,54 @@
   /* ─────────────── QUESTIONS DATABASE ─────────────── */
   const questions = [
     {
-      text: "Where does most of your monthly income come from?",
-      key: "incomeSource",
-      options: [
-        { text: "Full-time Job / Salary", val: 90000 },
-        { text: "Freelancing / Business", val: 120000 },
-        { text: "Allowance / Student Stipend", val: 25000 }
-      ]
-    },
-    {
-      text: "What is your approximate monthly cash flow?",
-      key: "income",
-      options: [
-        { text: "Under ₹30,000", val: 25000 },
-        { text: "₹30,000 - ₹60,000", val: 45000 },
-        { text: "₹60,000 - ₹1,20,000", val: 90000 },
-        { text: "Over ₹1,20,000", val: 150000 }
-      ]
-    },
-    {
-      text: "How do you typically manage saving or investing at month-end?",
+      text: "Investigator: \"When your salary arrives... who gets paid first?\"",
       key: "savingsHabit",
       options: [
-        { text: "I save/invest first thing", val: "first" },
-        { text: "I save whatever is left over", val: "leftover" },
-        { text: "Nothing is left over", val: "none" }
+        { text: "My investments", val: "first" },
+        { text: "My savings", val: "first" },
+        { text: "My bills", val: "leftover" },
+        { text: "Whatever needs money most", val: "none" }
       ]
     },
     {
-      text: "When you think about your finances today, which statement feels most accurate?",
+      text: "Investigator: \"If your income vanished tomorrow... how long could you stay hidden from financial danger?\"",
+      key: "reservesDuration",
+      options: [
+        { text: "Less than 1 month", val: "short" },
+        { text: "1–3 months", val: "short" },
+        { text: "3–6 months", val: "medium" },
+        { text: "More than 6 months", val: "long" }
+      ]
+    },
+    {
+      text: "Investigator: \"What do you believe is standing between you and wealth?\"",
+      key: "wealthBarrier",
+      options: [
+        { text: "I need more income", val: "income" },
+        { text: "I need more discipline", val: "discipline" },
+        { text: "I need a better system", val: "system" },
+        { text: "I'm not sure what the problem is", val: "unsure" }
+      ]
+    },
+    {
+      text: "Investigator: \"How do you currently invest?\"",
       key: "statusText",
       options: [
-        { text: "I save consistently but want to optimize", val: "optimize" },
-        { text: "I save occasionally but don't invest", val: "occasional" },
-        { text: "I earn well but don't know where my money goes", val: "disappears" },
-        { text: "I want to invest but haven't started", val: "notstarted" }
+        { text: "I invest consistently", val: "optimize" },
+        { text: "Occasionally", val: "occasional" },
+        { text: "Rarely", val: "disappears" },
+        { text: "I haven't started", val: "notstarted" }
+      ]
+    },
+    {
+      text: "Investigator: \"When you think about investing today, what stops you most?\"",
+      key: "investObjection",
+      options: [
+        { text: "I don't know where to start", val: "start" },
+        { text: "I think I need more money first", val: "money" },
+        { text: "I keep postponing it", val: "postpone" },
+        { text: "I don't trust most platforms", val: "trust" },
+        { text: "I already invest regularly", val: "already" }
       ]
     }
   ];
@@ -314,230 +328,690 @@
     });
   }
 
-  /* ─────────────── SCREEN 0: CASE INITIATION ─────────────── */
-  const btnOpenCase = document.getElementById('btnOpenCase');
+  /* ─────────────── SCREEN 0A: COLD OPEN ─────────────── */
+  const btnEnterCrimeScene = document.getElementById('btnEnterCrimeScene');
+  if (btnEnterCrimeScene) {
+    btnEnterCrimeScene.addEventListener('click', () => {
+      navigateTo('screenOpeningSequence');
+      startTeletypeText();
+    });
+  }
+
+  /* ─────────────── SCREEN 0B: TERMINAL TELEX DISPATCH ─────────────── */
+  const dispatchText = 
+`FEDERAL BUREAU OF INVESTIGATION (F.B.I.)
+FINANCIAL BEHAVIOR INTELLIGENCE
+CLASSIFIED CASE FILE
+STATUS: OPEN
+
+--------------------------------------------------
+SUBJECT:        UNKNOWN
+MISSING ASSET:  UNKNOWN
+CAUSE:          UNKNOWN
+--------------------------------------------------
+
+A potential wealth disappearance has been detected.
+The timeline investigation is active.`;
+
+  function startTeletypeText() {
+    const el = document.getElementById('teletypeTerminal');
+    if (!el) return;
+    
+    let index = 0;
+    el.innerHTML = '';
+    
+    playSirenHum();
+
+    function type() {
+      if (index < dispatchText.length) {
+        const char = dispatchText.charAt(index);
+        el.innerHTML += char;
+        index++;
+        
+        if (char !== ' ' && char !== '\n' && index % 2 === 0) {
+          playSound('click');
+        }
+        
+        let delay = 20;
+        if (char === '\n') delay = 120;
+        else if (char === '.' || char === '?' || char === ':') delay = 300;
+        
+        setTimeout(type, delay);
+      } else {
+        const actionArea = document.getElementById('terminalActionArea');
+        if (actionArea) {
+          actionArea.style.display = 'block';
+          actionArea.style.opacity = '0';
+          actionArea.style.transition = 'opacity 0.8s ease';
+          setTimeout(() => { actionArea.style.opacity = '1'; }, 50);
+        }
+      }
+    }
+    setTimeout(type, 500);
+  }
+
+  function playSirenHum() {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(150, now);
+      osc.frequency.linearRampToValueAtTime(100, now + 1.2);
+      osc.frequency.linearRampToValueAtTime(150, now + 2.4);
+      
+      gain.gain.setValueAtTime(0.015, now);
+      gain.gain.linearRampToValueAtTime(0.015, now + 2.2);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 2.4);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 2.4);
+    } catch(e) {
+      console.warn("Audio Context blocked:", e);
+    }
+  }
+
+  const btnAcceptCase = document.getElementById('btnAcceptCase');
+  if (btnAcceptCase) {
+    btnAcceptCase.addEventListener('click', () => {
+      navigateTo('screenDispatch');
+      startDispatchTeletypeText();
+    });
+  }
+
+  /* ─────────────── SCREEN 1: EMERGENCY DISPATCH ─────────────── */
+  const dispatchEmergencyText = 
+`To whoever receives this message,
+
+Over the last decade, thousands of people have reported the same problem.
+Not a stolen wallet.
+Not a hacked account.
+Not a scam.
+Something stranger.
+
+A fortune that should have existed...
+never did.
+
+The missing money wasn't taken in one day.
+It disappeared slowly.
+A few hundred rupees at a time.
+A delayed decision at a time.
+A forgotten opportunity at a time.
+
+Most victims never noticed it happening.
+
+Our system believes your timeline may contain similar patterns.
+We need your help.`;
+
+  function startDispatchTeletypeText() {
+    const el = document.getElementById('dispatchTeletype');
+    if (!el) return;
+    
+    let index = 0;
+    el.innerHTML = '';
+
+    function type() {
+      if (index < dispatchEmergencyText.length) {
+        const char = dispatchEmergencyText.charAt(index);
+        el.innerHTML += char;
+        index++;
+        
+        if (char !== ' ' && char !== '\n' && index % 2 === 0) {
+          playSound('click');
+        }
+        
+        let delay = 15;
+        if (char === '\n') delay = 80;
+        
+        setTimeout(type, delay);
+      } else {
+        const actionArea = document.getElementById('dispatchActionArea');
+        if (actionArea) {
+          actionArea.style.display = 'block';
+          actionArea.style.opacity = '0';
+          actionArea.style.transition = 'opacity 0.8s ease';
+          setTimeout(() => { actionArea.style.opacity = '1'; }, 50);
+        }
+      }
+    }
+    setTimeout(type, 500);
+  }
+
+  const btnAcceptDispatch = document.getElementById('btnAcceptDispatch');
+  if (btnAcceptDispatch) {
+    btnAcceptDispatch.addEventListener('click', () => {
+      navigateTo('screenTimeline');
+    });
+  }
+
+  /* ─────────────── SCREEN 2: MISSING FORTUNE TIMELINE ─────────────── */
+  const btnOpenCaseFile = document.getElementById('btnOpenCaseFile');
+  if (btnOpenCaseFile) {
+    btnOpenCaseFile.addEventListener('click', () => {
+      navigateTo('screenCaseInitiation');
+    });
+  }
+
+  /* ─────────────── SCREEN 3: IDENTITY RECONSTRUCTION (DOSSIER) ─────────────── */
+  const btnVerifyDossier = document.getElementById('btnVerifyDossier');
   const folderInside = document.getElementById('folderInside');
   
-  btnOpenCase.addEventListener('click', () => {
-    // Clear previous errors
-    const errorLabel = document.getElementById('formErrorLabel');
-    if (errorLabel) errorLabel.style.display = 'none';
+  if (btnVerifyDossier) {
+    btnVerifyDossier.addEventListener('click', () => {
+      const errorLabel = document.getElementById('formErrorLabel');
+      if (errorLabel) errorLabel.style.display = 'none';
 
-    // Save onboarding details
-    const nameVal = document.getElementById('inputName').value.trim();
-    const ageVal = document.getElementById('inputAge').value;
-    const occupVal = document.getElementById('inputOccupation').value.trim();
-    const goalVal = document.getElementById('inputGoal').value;
-    const goalCostVal = document.getElementById('inputGoalCost').value;
+      const nameVal = document.getElementById('inputName').value.trim();
+      const ageVal = document.getElementById('inputAge').value;
+      const occupVal = document.getElementById('inputOccupation').value.trim();
+      const incomeVal = document.getElementById('inputIncome').value;
+      const goalVal = document.getElementById('inputGoal').value;
+      const goalCostVal = document.getElementById('inputGoalCost').value;
 
-    if (!nameVal || !ageVal || !occupVal || !goalCostVal) {
-      if (errorLabel) {
-        errorLabel.textContent = "⚠️ Please fill in all subject details.";
-        errorLabel.style.display = 'block';
-      } else {
-        alert("Please fill in all subject details.");
+      if (!nameVal || !ageVal || !occupVal || !incomeVal || !goalCostVal) {
+        if (errorLabel) {
+          errorLabel.textContent = "⚠️ Please supply all timeline identification signals.";
+          errorLabel.style.display = 'block';
+        } else {
+          alert("Please fill in all dossier details.");
+        }
+        return;
       }
-      return;
-    }
 
-    state.name = nameVal;
-    state.age = parseInt(ageVal);
-    state.occupation = occupVal;
-    state.goal = goalVal;
-    state.goalCost = parseInt(goalCostVal);
+      state.name = nameVal;
+      state.age = parseInt(ageVal);
+      state.occupation = occupVal;
+      state.income = parseInt(incomeVal);
+      state.goal = goalVal;
+      state.goalCost = parseInt(goalCostVal);
+      state.statementUploaded = false;
 
-    // Dynamic case updates
-    document.getElementById('headerCaseNum').textContent = `CASE #BM-2026-${Math.floor(10000 + Math.random() * 90000)}`;
-    document.getElementById('hudName').textContent = state.name;
-    document.getElementById('dashName').textContent = state.name;
-    document.getElementById('invoiceName').textContent = state.name;
-    document.getElementById('letterName').textContent = state.name;
-    document.getElementById('bpName').textContent = state.name;
+      // Disable inputs
+      btnVerifyDossier.disabled = true;
+      document.querySelectorAll('#screenCaseInitiation input, #screenCaseInitiation select').forEach(el => el.disabled = true);
 
-    playSound('stamp');
-    folderInside.style.display = 'flex';
-  });
+      // Dynamic case updates
+      document.getElementById('headerCaseNum').textContent = `CASE #BM-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+      document.getElementById('hudName').textContent = state.name;
+      document.getElementById('dashName').textContent = state.name;
+      document.getElementById('invoiceName').textContent = state.name;
+      document.getElementById('letterName').textContent = state.name;
+      document.getElementById('bpName').textContent = state.name;
 
-  const btnBeginInvestigation = document.getElementById('btnBeginInvestigation');
-  btnBeginInvestigation.addEventListener('click', () => {
-    navigateTo('screenAssessment');
-    startChatAssessment();
-  });
+      // Run sequential stamping
+      const stampGroups = [
+        { el: document.getElementById('dossierNameGroup'), delay: 100 },
+        { el: document.getElementById('dossierAgeGroup'), delay: 450 },
+        { el: document.getElementById('dossierOccupGroup'), delay: 800 },
+        { el: document.getElementById('dossierIncomeGroup'), delay: 1150 },
+        { el: document.getElementById('dossierGoalGroup'), delay: 1500 },
+        { el: document.getElementById('dossierCostGroup'), delay: 1850 }
+      ];
 
-  /* ─────────────── SCREEN 1: WEALTH ASSESSMENT ─────────────── */
-  const chatMessages = document.getElementById('chatMessages');
-  const chatOptions = document.getElementById('chatOptions');
-  const dnaSyncBar = document.getElementById('dnaSyncBar');
-  const dnaSyncVal = document.getElementById('dnaSyncVal');
+      stampGroups.forEach(stamp => {
+        setTimeout(() => {
+          if (stamp.el) {
+            stamp.el.classList.add('stamped');
+            playSound('stamp');
+          }
+        }, stamp.delay);
+      });
 
-  function appendChatMsg(sender, text, poseClass = 'pose-a') {
-    const msg = document.createElement('div');
-    msg.className = `msg ${sender}`;
-    if (sender === 'investigator') {
-      msg.innerHTML = `
-        <div class="msg-avatar-container">
-          <div class="detective-avatar ${poseClass}"></div>
-          <div class="msg-sender">AGENT COOPER</div>
-        </div>
-        <div class="msg-bubble">${text}</div>
-      `;
-    } else {
-      msg.className = `msg user`;
-      msg.innerHTML = `
-        <div class="msg-bubble">${text}</div>
-      `;
-    }
-    chatMessages.appendChild(msg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Show twist reveal after all stamps
+      setTimeout(() => {
+        folderInside.style.display = 'flex';
+        
+        setTimeout(() => {
+          document.getElementById('twistTitle').textContent = "CASE PROFILE INITIATED.";
+          playSound('click');
+        }, 500);
+
+        setTimeout(() => {
+          document.getElementById('twistLine1').textContent = "Calibrating timeline indexes...";
+          playSound('click');
+        }, 1200);
+
+        setTimeout(() => {
+          document.getElementById('twistLine2').textContent = "Estimated wealth variance compiled.";
+          playSound('click');
+        }, 1900);
+
+        setTimeout(() => {
+          const twistReveal = document.getElementById('twistReveal');
+          if (twistReveal) {
+            twistReveal.style.display = 'block';
+            playSound('leak');
+          }
+        }, 2700);
+
+        setTimeout(() => {
+          const btnGoToInterrogation = document.getElementById('btnGoToInterrogation');
+          if (btnGoToInterrogation) {
+            btnGoToInterrogation.style.display = 'block';
+            playSound('click');
+          }
+        }, 3400);
+
+      }, 2300);
+    });
   }
 
-  function startChatAssessment() {
+  const btnGoToInterrogation = document.getElementById('btnGoToInterrogation');
+  if (btnGoToInterrogation) {
+    btnGoToInterrogation.addEventListener('click', () => {
+      navigateTo('screenEvidenceCollection');
+      startEvidenceCollection();
+    });
+  }
+
+  /* ─────────────── SCREEN 4: EVIDENCE COLLECTION ─────────────── */
+  function startEvidenceCollection() {
     currentQuestionIdx = 0;
-    chatMessages.innerHTML = '';
-    askQuestion(currentQuestionIdx);
+    renderEvidenceQuestion(currentQuestionIdx);
   }
 
-  function askQuestion(idx) {
+  function renderEvidenceQuestion(idx) {
+    const container = document.getElementById('evidenceCardsContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
     const q = questions[idx];
-    // Map of cutout poses from detective_cutouts.jpg for chat messages
-    const poses = ['cutout-pose-4', 'cutout-pose-1', 'cutout-pose-2', 'cutout-pose-3'];
-    const currentPose = poses[idx] || 'cutout-pose-3';
-    appendChatMsg('investigator', q.text, currentPose);
+    if (!q) return;
 
-    // Sidebar thoughts updates
+    const card = document.createElement('div');
+    card.className = 'evidence-card';
+    card.innerHTML = `
+      <div class="evidence-stamp-acquired" style="display:none;">EVIDENCE ACQUIRED</div>
+      <div class="evidence-clue-header mono text-warn" style="font-size:12px; margin-bottom:8px;">INTERROGATION LOG #0${idx+1}</div>
+      <h3 class="evidence-question text-bright" style="font-size:15px; font-weight:800; line-height:1.4; font-family:var(--font-mono); margin-bottom:18px;">${q.text}</h3>
+      <div class="evidence-options-list">
+        ${q.options.map((opt, i) => `
+          <button class="evidence-option-btn mono" data-val="${opt.val}" data-index="${i}">
+            [ ] ${opt.text}
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    container.appendChild(card);
+
     const sidebarThoughts = [
-      "Analyzing subject's primary cash inflow vectors...",
-      "Evaluating total income velocity vs. expense footprint...",
-      "Probing capital retention habits. Saving discipline is critical...",
-      "Scanning cognitive wealth bias. Identifying delay factors..."
+      "Analyzing subject savings profile and cash retention bias...",
+      "Measuring reserve runway coordinates under sudden income stop...",
+      "Decoding primary systemic friction limits...",
+      "Evaluating investing consistency footprint... checking compounding...",
+      "Profiling objections footprint and capital sync blocks..."
     ];
-    const sidebarStatuses = ["INFLOW CHECK", "EXPENSE CHECK", "SAVINGS CHECK", "WEALTH BIAS"];
-    const sidebarPortraits = ["pose-a", "pose-b", "pose-c", "pose-d"];
+    const sidebarStatuses = ["SAVINGS SYNC", "RUNWAY METRIC", "SYSTEMIC FRICTION", "INVESTING PATH", "MINDSET BIAS"];
+    const sidebarPortraits = ["pose-b", "pose-c", "pose-a", "pose-d", "pose-b"];
 
     const elPortrait = document.getElementById('cooperSidebarPortrait');
     const elMessage = document.getElementById('cooperSidebarMessage');
     const elStatus = document.getElementById('cooperSidebarStatus');
     if (elPortrait) elPortrait.className = 'detective-cutout ' + (sidebarPortraits[idx] || 'pose-a');
     if (elMessage) elMessage.textContent = sidebarThoughts[idx] || '';
-    if (elStatus) elStatus.textContent = sidebarStatuses[idx] || 'ANALYZING';
-    
-    // Update progress
-    const progress = Math.round(((idx) / questions.length) * 100);
-    dnaSyncBar.style.width = `${progress || 25}%`;
-    dnaSyncVal.textContent = `${progress || 25}%`;
+    if (elStatus) elStatus.textContent = sidebarStatuses[idx] || 'INTERROGATION';
 
-    // Render options
-    chatOptions.innerHTML = '';
-    q.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'chat-opt';
-      btn.textContent = opt.text;
+    const progress = Math.round(((idx) / questions.length) * 100);
+    const dnaSyncBar = document.getElementById('dnaSyncBar');
+    const dnaSyncVal = document.getElementById('dnaSyncVal');
+    if (dnaSyncBar) dnaSyncBar.style.width = `${progress || 20}%`;
+    if (dnaSyncVal) dnaSyncVal.textContent = `${progress || 20}%`;
+
+    const optionBtns = card.querySelectorAll('.evidence-option-btn');
+    optionBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        playSound('click');
-        handleAnswer(q.key, opt);
+        const optionIdx = parseInt(btn.dataset.index);
+        const opt = q.options[optionIdx];
+        
+        btn.classList.add('selected');
+        btn.innerHTML = `[x] ${opt.text}`;
+        
+        optionBtns.forEach(b => b.disabled = true);
+        
+        playSound('stamp');
+        const stamp = card.querySelector('.evidence-stamp-acquired');
+        if (stamp) {
+          stamp.style.display = 'block';
+          stamp.style.animation = 'stampPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+        }
+
+        handleEvidenceAnswer(q.key, opt);
       });
-      chatOptions.appendChild(btn);
     });
   }
 
-  function handleAnswer(key, opt) {
-    appendChatMsg('user', opt.text);
-    chatOptions.innerHTML = '';
-    
-    // Save response in state
-    if (key === 'incomeSource') {
-      // metadata helper
-    } else if (key === 'income') {
-      state.income = opt.val;
-    } else if (key === 'savingsHabit') {
+  function handleEvidenceAnswer(key, opt) {
+    if (key === 'savingsHabit') {
       state.savingsHabit = opt.val;
-      // Update sidebar chip
       const chip = document.getElementById('chipSavings');
-      chip.classList.add('active');
-      chip.querySelector('.chip-val').textContent = opt.text.split(' ').slice(-1)[0].toUpperCase();
+      if (chip) {
+        chip.classList.add('active');
+        chip.querySelector('.chip-val').textContent = opt.text.toUpperCase();
+      }
     } else if (key === 'statusText') {
-      // Update sidebar invest chip
       const chip = document.getElementById('chipInvest');
-      chip.classList.add('active');
-      chip.querySelector('.chip-val').textContent = opt.val === 'optimize' ? 'OPTIMAL' : 'DELAYED';
+      if (chip) {
+        chip.classList.add('active');
+        chip.querySelector('.chip-val').textContent = opt.val === 'optimize' ? 'OPTIMAL' : 'DELAYED';
+      }
+    } else if (key === 'investObjection') {
+      const chip = document.getElementById('chipMindset');
+      if (chip) {
+        chip.classList.add('active');
+        chip.querySelector('.chip-val').textContent = 'COMPLETED';
+      }
     }
 
     setTimeout(() => {
       currentQuestionIdx++;
       if (currentQuestionIdx < questions.length) {
-        askQuestion(currentQuestionIdx);
+        renderEvidenceQuestion(currentQuestionIdx);
       } else {
-        // Assessment completed
-        dnaSyncBar.style.width = '100%';
-        dnaSyncVal.textContent = '100%';
+        setTimeout(() => {
+          navigateTo('screenEvidenceReview');
+        }, 1200);
+      }
+    }, 1200);
+  }
+
+  /* ─────────────── SCREEN 4B: INITIAL EVIDENCE REVIEW ─────────────── */
+  const btnGoToForensics = document.getElementById('btnGoToForensics');
+  if (btnGoToForensics) {
+    btnGoToForensics.addEventListener('click', () => {
+      navigateTo('screenForensicLab');
+      initForensicUpload();
+    });
+  }
+
+  /* ─────────────── SCREEN 5: FINANCIAL FORENSICS LAB (FORENSIC EVIDENCE REQUEST) ─────────────── */
+  let uploadedFile = null;
+
+  function initForensicUpload() {
+    const uploadDropZone = document.getElementById('uploadDropZone');
+    const bankStatementInput = document.getElementById('bankStatementInput');
+    const fileStatus = document.getElementById('fileUploadStatus');
+    const btnScan = document.getElementById('btnTriggerForensicScan');
+    const btnSkip = document.getElementById('btnSkipUpload');
+    const confidenceBadge = document.getElementById('uploadConfidenceBadge');
+
+    if (!uploadDropZone) return;
+
+    // Reset previous files
+    uploadedFile = null;
+    if (fileStatus) fileStatus.style.display = 'none';
+    if (btnScan) btnScan.disabled = true;
+    if (confidenceBadge) {
+      confidenceBadge.textContent = "CONFIDENCE: LOW";
+      confidenceBadge.style.borderColor = "var(--warn)";
+      confidenceBadge.style.color = "var(--warn)";
+    }
+
+    uploadDropZone.onclick = () => {
+      bankStatementInput.click();
+    };
+
+    bankStatementInput.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleUploadedFile(file, fileStatus, btnScan, confidenceBadge);
+      }
+    };
+
+    // Drag and drop events
+    uploadDropZone.ondragover = (e) => {
+      e.preventDefault();
+      uploadDropZone.classList.add('dragover');
+    };
+
+    uploadDropZone.ondragleave = () => {
+      uploadDropZone.classList.remove('dragover');
+    };
+
+    uploadDropZone.ondrop = (e) => {
+      e.preventDefault();
+      uploadDropZone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        handleUploadedFile(file, fileStatus, btnScan, confidenceBadge);
+      }
+    };
+
+    btnSkip.onclick = () => {
+      state.statementUploaded = false;
+      navigateTo('screenForensicScan');
+      runForensicFileScanner(false);
+    };
+
+    btnScan.onclick = () => {
+      state.statementUploaded = true;
+      navigateTo('screenForensicScan');
+      runForensicFileScanner(true);
+    };
+  }
+
+  function handleUploadedFile(file, statusEl, buttonEl, badgeEl) {
+    uploadedFile = file;
+    playSound('stamp');
+    statusEl.innerHTML = `📄 EVIDENCE SELECTED: <strong class="text-bright">${file.name}</strong> (${Math.round(file.size / 1024)} KB)`;
+    statusEl.style.display = 'block';
+    buttonEl.disabled = false;
+    
+    badgeEl.textContent = "CONFIDENCE: VERY HIGH";
+    badgeEl.style.borderColor = "var(--bright)";
+    badgeEl.style.color = "var(--bright)";
+  }
+
+  /* ─────────────── SCREEN 5B: FINANCIAL FORENSICS SCAN ─────────────── */
+  function runForensicFileScanner(hasUpload) {
+    const consoleEl = document.getElementById('forensicScanConsole');
+    if (!consoleEl) return;
+    consoleEl.innerHTML = '';
+
+    const logs = hasUpload ? [
+      { text: "INITIALIZING PARSER HANDSHAKE...", type: "info" },
+      { text: `SCANNING EVIDENCE: ${uploadedFile ? uploadedFile.name : 'STATEMENT.PDF'}...`, type: "info" },
+      { text: "TRANSACTIONS INDEXED SUCCESSFULLY", type: "success" },
+      { text: "IDENTIFYING RECURRING MERCHANTS...", type: "info" },
+      { text: "FLAGGED: swiggy/zomato convenience transactions (Est. bleed: high)", type: "warn" },
+      { text: "FLAGGED: subscription payments detected", type: "warn" },
+      { text: "MAPPING INVESTMENT OUTFLOWS...", type: "info" },
+      { text: "ALERT: Delayed compound potential detected", type: "danger" },
+      { text: "BEHAVIORAL PROFILE GENERATED.", type: "success" },
+      { text: "EVIDENCE INTEGRATED. INVESTIGATION CONFIDENCE: HIGH", type: "success" }
+    ] : [
+      { text: "INITIALIZING MANUAL RECONSTRUCTION...", type: "info" },
+      { text: "ANALYZING EVIDENCE...", type: "info" },
+      { text: "✓ Convenience Spending Identified", type: "success" },
+      { text: "✓ Investment Delay Identified", type: "success" },
+      { text: "✓ Opportunity Cost Indicators Found", type: "success" },
+      { text: "⚠ High Priority Person of Interest Added", type: "warn" },
+      { text: "Loading Crime Network...", type: "info" }
+    ];
+
+    let logIdx = 0;
+    
+    function printNextLog() {
+      if (logIdx < logs.length) {
+        const log = logs[logIdx];
+        const p = document.createElement('p');
+        p.className = `mono text-${log.type} console-log-line`;
+        p.textContent = `> ${log.text}`;
+        p.style.margin = "4px 0";
         
-        const chip = document.getElementById('chipMindset');
-        chip.classList.add('active');
-        chip.querySelector('.chip-val').textContent = 'COMPLETED';
-
-        // Update sidebar thinking widget to completed state
-        const elPortrait = document.getElementById('cooperSidebarPortrait');
-        const elMessage = document.getElementById('cooperSidebarMessage');
-        const elStatus = document.getElementById('cooperSidebarStatus');
-        if (elPortrait) elPortrait.className = 'detective-cutout pose-e';
-        if (elMessage) elMessage.textContent = "Financial profile resolved. Category scan sequence initiated.";
-        if (elStatus) elStatus.textContent = "RESOLVED";
-
-        appendChatMsg('investigator', "Discovery Interview completed. Let's move to resolving target category leaks.", 'cutout-pose-5');
+        consoleEl.appendChild(p);
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+        
+        playSound('click');
+        logIdx++;
+        
+        setTimeout(printNextLog, 250);
+      } else {
         setTimeout(() => {
           navigateTo('screenLeaks');
-          populateLeakCardCostLabels();
-        }, 1500);
+          initFinancialCrimeNetwork();
+        }, 800);
       }
-    }, 800);
+    }
+
+    setTimeout(printNextLog, 400);
   }
 
-  /* ─────────────── SCREEN 2: WEALTH LEAKS ─────────────── */
-  const leakCards = document.querySelectorAll('.leak-card');
-  const btnConfirmLeaks = document.getElementById('btnConfirmLeaks');
+  /* ─────────────── SCREEN 6: FINANCIAL CRIME NETWORK ─────────────── */
+  function initFinancialCrimeNetwork() {
+    const nodesContainer = document.getElementById('networkContainer');
+    const nodes = document.querySelectorAll('.network-node-item');
+    const btnConfirm = document.getElementById('btnConfirmLeaks');
+    const loader = document.getElementById('networkLoader');
 
-  leakCards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('selected');
-      if (card.classList.contains('selected')) {
-        playSound('leak');
-      } else {
+    if (!nodesContainer) return;
+
+    loader.style.display = 'block';
+    nodesContainer.style.opacity = '0';
+    btnConfirm.disabled = true;
+
+    // Reset accused classes
+    nodes.forEach(node => node.classList.remove('accused'));
+
+    // Simulate map connection assembling
+    let loadPct = 0;
+    const loadBar = document.getElementById('networkLoaderBar');
+    
+    function updateLoader() {
+      if (loadPct < 100) {
+        loadPct += 10;
+        if (loadBar) loadBar.style.width = loadPct + '%';
         playSound('click');
-      }
-      
-      // Update confirm button active state
-      const selected = document.querySelectorAll('.leak-card.selected');
-      state.selectedLeaks = Array.from(selected).map(c => c.dataset.category);
-      btnConfirmLeaks.disabled = state.selectedLeaks.length === 0;
-    });
-  });
+        setTimeout(updateLoader, 100);
+      } else {
+        loader.style.display = 'none';
+        nodesContainer.style.opacity = '1';
+        drawNetworkSVGConnections();
+        playSound('leak');
 
-  // Calculate and display dynamic leak card loss projections in real-time
-  function populateLeakCardCostLabels() {
-    const cards = document.querySelectorAll('.leak-card');
-    cards.forEach(card => {
-      const cat = card.dataset.category;
-      const monthlyBleed = getCategoryCost(cat, state.income);
-      const fv10 = computeFV(monthlyBleed / 30, 10);
-      
-      let label = card.querySelector('.leak-live-loss');
-      if (!label) {
-        label = document.createElement('div');
-        label.className = 'leak-live-loss';
-        card.appendChild(label);
+        // Pre-flag suspects if file uploaded
+        if (state.statementUploaded) {
+          nodes.forEach(node => {
+            const cat = node.dataset.category;
+            if (cat === 'food' || cat === 'subscriptions' || cat === 'lifestyle') {
+              node.classList.add('accused');
+            }
+          });
+          state.selectedLeaks = ['food', 'subscriptions', 'lifestyle'];
+          updateAccusedLines();
+          btnConfirm.disabled = false;
+        } else {
+          state.selectedLeaks = [];
+          updateAccusedLines();
+        }
       }
-      
-      label.innerHTML = `⚠️ Est. Bleed: <span class="text-warn" style="font-weight:800;">${formatCurrency(monthlyBleed)}/mo</span><br>📈 10y Compounded Cost: <span class="text-danger" style="font-weight:800;">${shorthand(fv10)}</span>`;
+    }
+    setTimeout(updateLoader, 300);
+
+    nodes.forEach(node => {
+      node.onclick = () => {
+        node.classList.toggle('accused');
+        if (node.classList.contains('accused')) {
+          playSound('stamp');
+        } else {
+          playSound('click');
+        }
+
+        const selected = document.querySelectorAll('.network-node-item.accused');
+        state.selectedLeaks = Array.from(selected).map(c => c.dataset.category);
+        
+        updateAccusedLines();
+
+        if (btnConfirm) {
+          btnConfirm.disabled = state.selectedLeaks.length === 0;
+        }
+      };
     });
   }
 
-  btnConfirmLeaks.addEventListener('click', () => {
-    recalculateFinancials();
-    navigateTo('screenMatrix');
-    setupMatrixValues();
-  });
+  function drawNetworkSVGConnections() {
+    const svg = document.getElementById('networkSVG');
+    if (!svg) return;
+    svg.innerHTML = `
+      <line x1="15%" y1="20%" x2="70%" y2="15%" class="network-line" data-nodes="food,subscriptions" />
+      <line x1="15%" y1="20%" x2="45%" y2="50%" class="network-line" data-nodes="food,lifestyle" />
+      <line x1="70%" y1="15%" x2="45%" y2="50%" class="network-line" data-nodes="subscriptions,lifestyle" />
+      <line x1="15%" y1="20%" x2="18%" y2="75%" class="network-line" data-nodes="food,debt" />
+      <line x1="18%" y1="75%" x2="45%" y2="50%" class="network-line" data-nodes="debt,lifestyle" />
+      <line x1="18%" y1="75%" x2="75%" y2="78%" class="network-line" data-nodes="debt,travel" />
+      <line x1="75%" y1="78%" x2="45%" y2="50%" class="network-line" data-nodes="travel,lifestyle" />
+      <line x1="75%" y1="78%" x2="82%" y2="45%" class="network-line" data-nodes="travel,habits" />
+      <line x1="70%" y1="15%" x2="82%" y2="45%" class="network-line" data-nodes="subscriptions,habits" />
+      <line x1="82%" y1="45%" x2="45%" y2="50%" class="network-line" data-nodes="habits,lifestyle" />
+    `;
+    updateAccusedLines();
+  }
 
-  /* ─────────────── SCREEN 3: MATRIX & PREDICTIONS ─────────────── */
+  function updateAccusedLines() {
+    const lines = document.querySelectorAll('.network-line');
+    lines.forEach(line => {
+      const nodes = line.getAttribute('data-nodes').split(',');
+      const active = nodes.some(n => state.selectedLeaks.includes(n));
+      if (active) {
+        line.classList.add('active');
+      } else {
+        line.classList.remove('active');
+      }
+    });
+  }
+
+  const btnConfirmLeaks = document.getElementById('btnConfirmLeaks');
+  if (btnConfirmLeaks) {
+    btnConfirmLeaks.onclick = () => {
+      playSound('stamp');
+      navigateTo('screenTwist');
+    };
+  }
+
+  /* ─────────────── SCREEN 7: CASE UPDATE TWIST ─────────────── */
+  const btnDismissTwist = document.getElementById('btnDismissTwist');
+  if (btnDismissTwist) {
+    btnDismissTwist.onclick = () => {
+      recalculateFinancials();
+      navigateTo('screenMatrix');
+      setupMatrixValues();
+      
+      const findingsBadge = document.getElementById('findingsConfidenceBadge');
+      if (findingsBadge) {
+        findingsBadge.textContent = state.statementUploaded ? "Confidence Level: VERY HIGH" : "Confidence Level: MODERATE";
+      }
+    };
+  }
+
+  /* ─────────────── SCREEN 8: PRELIMINARY FINDINGS ─────────────── */
+  const btnGoToSnapshot = document.getElementById('btnGoToSnapshot');
+  if (btnGoToSnapshot) {
+    btnGoToSnapshot.onclick = () => {
+      const snapConf = document.getElementById('snapshotConfidenceVal');
+      if (snapConf) {
+        snapConf.textContent = state.statementUploaded ? "VERY HIGH (VERIFIED EVIDENCE)" : "MODERATE (MANUAL SIGNALS)";
+      }
+      navigateTo('screenEvidenceSnapshot');
+    };
+  }
+
+  /* ─────────────── SCREEN 8B: EVIDENCE BOARD SNAPSHOT ─────────────── */
+  const btnStartScan = document.getElementById('btnStartScan');
+  if (btnStartScan) {
+    btnStartScan.addEventListener('click', () => {
+      navigateTo('screenScan');
+      runMoneyMRI();
+    });
+  }
+
+  /* ─────────────── SCREEN 9: MATRIX & PREDICTIONS ─────────────── */
   function setupMatrixValues() {
     document.getElementById('matrixValIncome').textContent = formatCurrency(state.income);
     document.getElementById('matrixValSavings').textContent = formatCurrency(state.savings);
@@ -550,14 +1024,11 @@
     const optRouteMonths = Math.round(state.goalCost / ((state.savings + state.investments + Math.round(state.monthlyLeakTotal * 0.75)) || 1));
     const gapYears = Math.round((currentRouteMonths - optRouteMonths) / 12);
     
-    document.getElementById('predDelayYrs').textContent = `${gapYears > 0 ? gapYears : 4-8} Years`;
+    const predDelayEl = document.getElementById('predDelayYrs');
+    if (predDelayEl) {
+      predDelayEl.textContent = `${gapYears > 0 ? gapYears : 4-8} Years`;
+    }
   }
-
-  const btnStartScan = document.getElementById('btnStartScan');
-  btnStartScan.addEventListener('click', () => {
-    navigateTo('screenScan');
-    runMoneyMRI();
-  });
 
   /* ─────────────── SCREEN 4: MONEY MRI SCAN ─────────────── */
   const consoleBody = document.getElementById('consoleBody');
@@ -1009,7 +1480,7 @@
             <div class="cert-cell"><div class="cert-cell-label">ACTUAL AGE</div><div class="cert-cell-val">${state.age} Yrs</div></div>
           </div>
           <p class="text-muted" style="font-size:11px;">Issued on ${dateStr} after complete transaction investigation.</p>
-          <div class="cert-seal-stamp">F.I.B. SECURE</div>
+          <div class="cert-seal-stamp">F.B.I. SECURE</div>
         </div>
       `;
     } else if (type === 'dna') {
@@ -1119,7 +1590,7 @@
     } else if (type === 'recovery_order') {
       html = `
         <div class="cert-card" style="border-color:#1e293b; text-align:left;">
-          <div class="cert-header" style="text-align:center;">F.I.B. EXECUTIVE DECREE</div>
+          <div class="cert-header" style="text-align:center;">F.B.I. EXECUTIVE DECREE</div>
           <h2 class="cert-title" style="border-color:#1e293b; text-align:center;">WEALTH RECOVERY ORDER</h2>
           <p style="font-size:12px; margin-bottom:12px; line-height:1.4;">To the subject ${state.name}, you are hereby commanded to recover and reallocate outflows:</p>
           <div style="font-size:13px; font-family:var(--font-mono); margin-bottom:16px;">
@@ -1135,7 +1606,7 @@
     } else if (type === 'investigation') {
       html = `
         <div class="cert-card" style="border-color:#148A47; text-align:left;">
-          <div class="cert-header" style="text-align:center;">F.I.B. OFFICIAL INQUEST</div>
+          <div class="cert-header" style="text-align:center;">F.B.I. OFFICIAL INQUEST</div>
           <h2 class="cert-title" style="border-color:#148A47; text-align:center;">INVESTIGATION REPORT</h2>
           <div class="findings-table" style="font-size:12px;">
             <div class="table-row"><span>Subject Name</span><span class="mono">${state.name}</span></div>
@@ -1192,7 +1663,7 @@
       });
       html = `
         <div class="cert-card" style="border-color:#FF3B30; text-align:left;">
-          <div class="cert-header" style="text-align:center; color:#FF3B30;">F.I.B. FORENSIC CHARGE</div>
+          <div class="cert-header" style="text-align:center; color:#FF3B30;">F.B.I. FORENSIC CHARGE</div>
           <h2 class="cert-title" style="border-color:#FF3B30; text-align:center;">WEALTH LEAKAGE CHARGE SHEET</h2>
           <div class="charge-sheet-body">${chargeRows}</div>
         </div>
@@ -1285,7 +1756,7 @@
     ctx.fillStyle = 'rgba(47, 209, 120, 0.05)';
     ctx.font = '800 64px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('BLINKMONEY F.I.B.', canvas.width / 2, 200);
+    ctx.fillText('BLINKMONEY F.B.I.', canvas.width / 2, 200);
 
     const dateStr = new Date().toLocaleDateString('en-IN', {day: 'numeric', month: 'long', year: 'numeric'});
 
@@ -1343,7 +1814,7 @@
 
       ctx.fillStyle = '#d4af37';
       ctx.font = 'bold 16px monospace';
-      ctx.fillText('F.I.B. SECURE STAMP', 560, 840);
+      ctx.fillText('F.B.I. SECURE STAMP', 560, 840);
     } else if (type === 'dna') {
       const isLeftover = state.savingsHabit === 'leftover';
       const isNone = state.savingsHabit === 'none';
@@ -1596,7 +2067,7 @@
 
       ctx.fillStyle = '#1e293b';
       ctx.font = 'bold 18px monospace';
-      ctx.fillText('F.I.B. EXECUTIVE DECREE', canvas.width/2, 300);
+      ctx.fillText('F.B.I. EXECUTIVE DECREE', canvas.width/2, 300);
       ctx.font = 'bold 28px sans-serif';
       ctx.fillText('WEALTH RECOVERY ORDER', canvas.width/2, 350);
 
@@ -1624,7 +2095,7 @@
 
       ctx.fillStyle = '#148A47';
       ctx.font = 'bold 20px monospace';
-      ctx.fillText('F.I.B. OFFICIAL INQUEST', canvas.width/2, 300);
+      ctx.fillText('F.B.I. OFFICIAL INQUEST', canvas.width/2, 300);
       ctx.fillStyle = '#1e252b';
       ctx.font = 'bold 32px sans-serif';
       ctx.fillText('INVESTIGATION REPORT', canvas.width/2, 370);
@@ -1687,7 +2158,7 @@
 
       ctx.fillStyle = '#FF3B30';
       ctx.font = 'bold 20px monospace';
-      ctx.fillText('F.I.B. FORENSIC CHARGE', canvas.width/2, 300);
+      ctx.fillText('F.B.I. FORENSIC CHARGE', canvas.width/2, 300);
       ctx.fillStyle = '#1e252b';
       ctx.font = 'bold 28px sans-serif';
       ctx.fillText('WEALTH LEAKAGE CHARGE SHEET', canvas.width/2, 350);
@@ -1828,7 +2299,7 @@
 
       ctx.fillStyle = '#e8b53c';
       ctx.font = 'bold 28px monospace';
-      ctx.fillText('VERIFIED BY BLINKMONEY F.I.B.', canvas.width/2, 700);
+      ctx.fillText('VERIFIED BY BLINKMONEY F.B.I.', canvas.width/2, 700);
     }
 
     // Trigger download

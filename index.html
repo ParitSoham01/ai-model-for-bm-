@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BlinkMoney F.I.B. — Financial Intelligence Bureau</title>
-  <meta name="description" content="Confidential Financial Intelligence Assessment and Money MRI Diagnostic Scanner by BlinkMoney.">
+  <title>BlinkMoney F.B.I. — Financial Behavior Intelligence</title>
+  <meta name="description" content="Confidential Financial Behavior Assessment and Money MRI Diagnostic Scanner by BlinkMoney.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,600;0,800;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,123 +33,250 @@
     <header class="system-header">
       <div class="logo-area">
         <span class="status-indicator"></span>
-        <span class="logo-text">BLINKMONEY F.I.B.</span>
+        <span class="logo-text">BLINKMONEY F.B.I.</span>
       </div>
       <div class="case-number" id="headerCaseNum">CASE #BM-2026-PENDING</div>
     </header>
 
     <main class="screen-container">
       
-      <!-- SCREEN 0: CASE INITIATION & TIMELINE STORY -->
-      <section class="screen active" id="screenCaseInitiation">
-        <div class="case-file-wrapper initiation-split-layout">
-          
-          <!-- Big Detective Cutout intro -->
-          <div class="detective-intro-cutout">
-            <div class="detective-full-bust"></div>
-            <div class="detective-speech">
-              <span class="speech-glow"></span>
-              <p>"I'm Agent Cooper, head of F.I.B. Open the case file to begin the investigation into your daily financial leaks."</p>
-            </div>
-          </div>
-
-          <div class="case-folder" id="caseFolder">
-            <div class="folder-tab">CASE FILE</div>
-            <div class="folder-front">
-              <div class="stamp-classified">CLASSIFIED</div>
-              <div class="badge-seal">🛡️</div>
-              <h2 class="folder-title">FINANCIAL INTEGRITY FILE</h2>
-              <div class="folder-meta">
-                <div class="meta-row"><span>CASE ID:</span> <span class="mono text-bright">#BM-2026-78421</span></div>
-                <div class="meta-row"><span>STATUS:</span> <span class="mono text-warn">PENDING OPENING</span></div>
-                <div class="meta-row"><span>LEVEL:</span> <span class="mono">CONFIDENTIAL</span></div>
+      <!-- SCREEN 0A — COLD OPEN (CRIME SCENE REPORT) -->
+      <section class="screen active" id="screenColdOpen">
+        <div class="center-content">
+          <div class="eyebrow text-danger">⚠️ FBI CASE ALERT</div>
+          <div class="discovery-card card" style="width:100%; max-width: 500px; text-align: left; border-color: var(--danger); background: rgba(255,59,48,0.01);">
+            <h3 class="text-danger mono" style="font-size:22px; font-weight:800; margin-bottom:15px; letter-spacing:0.05em; border-bottom:1px solid rgba(255,59,48,0.2); padding-bottom:10px;">CRIME SCENE REPORT</h3>
+            <h4 class="text-bright mono" style="font-size: 16px; margin-bottom:15px; line-height:1.4;">CASE ZERO: THE MISSING FORTUNE</h4>
+            
+            <div class="snapshot-details-grid mono" style="display:grid; grid-template-columns: 1fr; gap:12px; font-size:13px; margin-bottom: 25px;">
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Victim:</span>
+                <strong class="text-danger">Your Future Wealth</strong>
               </div>
-              <div class="onboarding-form">
-                <div id="formErrorLabel" style="color: #8a1414; font-size: 11px; font-weight: 800; text-align: center; display: none; margin-bottom: 10px;"></div>
-                <div class="input-group">
-                  <label for="inputName">SUBJECT FIRST NAME</label>
-                  <input type="text" id="inputName" placeholder="e.g. Rahul" required autocomplete="off">
-                </div>
-                <div class="input-row">
-                  <div class="input-group">
-                    <label for="inputAge">AGE</label>
-                    <input type="number" id="inputAge" placeholder="23" min="15" max="80" required>
-                  </div>
-                  <div class="input-group">
-                    <label for="inputOccupation">OCCUPATION</label>
-                    <input type="text" id="inputOccupation" placeholder="e.g. Developer" required autocomplete="off">
-                  </div>
-                </div>
-                <div class="input-row">
-                  <div class="input-group">
-                    <label for="inputGoal">DREAM GOAL</label>
-                    <select id="inputGoal">
-                      <option value="KTM Duke">🏍️ KTM Duke Bike</option>
-                      <option value="Electric SUV">🚗 Electric SUV Car</option>
-                      <option value="Goa Trip">✈️ Goa Vacation</option>
-                      <option value="Dream Home">🏡 Apartment Downpayment</option>
-                      <option value="Wedding">💍 Grand Wedding</option>
-                      <option value="Financial Freedom">💰 Financial Freedom Fund</option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <label for="inputGoalCost">EST. COST (₹)</label>
-                    <input type="number" id="inputGoalCost" placeholder="250000" min="10000" required>
-                  </div>
-                </div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Condition:</span>
+                <strong class="text-danger">Missing</strong>
               </div>
-              <button class="btn-primary ripple-btn" id="btnOpenCase">Open Case File</button>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Estimated Time of Disappearance:</span>
+                <strong class="text-warn">Unknown</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Primary Suspect:</span>
+                <strong class="text-warn">Unknown</strong>
+              </div>
             </div>
             
-            <div class="folder-inside" id="folderInside">
-              <div class="akimbo-story">
-                <h3 class="story-header">Akimbo Wealth Intelligence Directive</h3>
-                <div class="story-paragraph">
-                  Most people believe wealth is created by income.
-                </div>
-                <div class="story-paragraph highlight-bright">
-                  That isn't true.
-                </div>
-                <div class="story-paragraph">
-                  Two people can earn the same salary. One becomes financially free. The other stays stressed for decades.
-                </div>
-                <div class="story-paragraph highlight-gold">
-                  The difference is usually invisible. Today we're going to find that difference.
-                </div>
-                <button class="btn-primary pulse-glow-btn" id="btnBeginInvestigation">Begin Investigation</button>
+            <p class="mono text-muted text-center" style="font-size:11px; margin-bottom:20px;">
+              Lead Investigator Required.
+            </p>
+            
+            <div style="display:flex; justify-content:center;">
+              <button class="btn-primary glow-red-to-green pulse-glow-btn" id="btnEnterCrimeScene" style="padding: 12px 30px;">ENTER CRIME SCENE</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 0B: TERMINAL TELEX DISPATCH -->
+      <section class="screen" id="screenOpeningSequence">
+        <div class="terminal-wrapper">
+          <div class="crt-overlay"></div>
+          <div class="terminal-body">
+            <div id="teletypeTerminal" class="mono text-bright"></div>
+            <div class="terminal-input-line" style="display:none;" id="terminalActionArea">
+              <span class="terminal-prompt mono">&gt; ACKNOWLEDGE BEHAVIOR DISPATCH? [Y/N]_</span>
+              <div class="terminal-buttons">
+                <button class="btn-terminal mono pulse-glow-btn" id="btnAcceptCase">[ Continue ]</button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SCREEN 1: WEALTH ASSESSMENT & CATEGORIES -->
-      <section class="screen" id="screenAssessment">
-        <div class="interview-layout">
-          <!-- Chat Area -->
-          <div class="chat-container">
-            <div class="chat-messages" id="chatMessages">
-              <!-- Animated messages will appear here -->
+      <!-- SCREEN 1: EMERGENCY DISPATCH -->
+      <section class="screen" id="screenDispatch">
+        <div class="terminal-wrapper">
+          <div class="crt-overlay"></div>
+          <div class="terminal-body">
+            <div class="dispatch-header mono text-warn">⚠️ EMERGENCY DISPATCH // BEHAVIORAL BLOCK</div>
+            <div id="dispatchTeletype" class="mono text-bright" style="margin-top: 15px; font-size: 14px; line-height: 1.6; white-space: pre-wrap;"></div>
+            <div class="terminal-input-line" style="display:none;" id="dispatchActionArea">
+              <span class="terminal-prompt mono">&gt; ASSIST IN THE TIMELINE INVESTIGATION?_</span>
+              <div class="terminal-buttons">
+                <button class="btn-terminal mono pulse-glow-btn" id="btnAcceptDispatch">[ ACCEPT CASE ]</button>
+              </div>
             </div>
-            <div class="chat-options-area" id="chatOptions">
-              <!-- Clickable choices will render here dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: THE MISSING FORTUNE TIMELINE -->
+      <section class="screen" id="screenTimeline">
+        <div class="center-content">
+          <div class="eyebrow text-danger">INVESTIGATION TARGET</div>
+          <h2 class="section-title">A future that should have happened</h2>
+          <p class="section-desc">Somewhere ahead of you exists your goals achieved, growing investments, and financial freedom. But the timeline shows it is slowly fading away.</p>
+          
+          <div class="timeline-visual-area">
+            <div class="timeline-lane-container">
+              <div class="timeline-lane-label mono text-bright">ESTABLISHED TIMELINE (100% WEALTH CAPABILITY)</div>
+              <div class="timeline-lane-line green-glow-line"><div class="timeline-node green-node"></div></div>
+            </div>
+            <div class="timeline-lane-container" style="margin-top: 30px;">
+              <div class="timeline-lane-label mono text-danger">CURRENT ANOMALOUS TIMELINE (FADING FORTUNE)</div>
+              <div class="timeline-lane-line red-glow-line fading-line"><div class="timeline-node red-node animating-node"></div></div>
+            </div>
+          </div>
+          
+          <div class="mono text-center text-muted" style="margin-bottom: 30px; font-size: 13px; max-width: 500px;">
+            The problem? We don't know whether that future still exists. Let's find out.
+          </div>
+          
+          <button class="btn-primary ripple-btn" id="btnOpenCaseFile">OPEN CASE FILE</button>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: IDENTITY RECONSTRUCTION (DOSSIER) -->
+      <section class="screen" id="screenCaseInitiation">
+        <div class="case-file-wrapper initiation-split-layout">
+          <!-- Detective Desk Ambient Clues -->
+          <div class="detective-desk-clues">
+            <!-- Polaroid Photo -->
+            <div class="polaroid-photo">
+              <div class="polaroid-img"></div>
+              <div class="polaroid-caption mono">AGENT COOPER - F.B.I.</div>
+            </div>
+            <!-- Pinned Note -->
+            <div class="pinned-note mono">
+              <span class="pin">📌</span>
+              <strong>CLUE #1:</strong><br>
+              Strangulation occurs via micro-transfers (₹199 - ₹999).
+            </div>
+          </div>
+
+          <!-- The Classified Dossier Folder -->
+          <div class="case-folder" id="caseFolder">
+            <div class="folder-tab">CASE FILE</div>
+            <div class="folder-front">
+              <div class="coffee-stain"></div>
+              <div class="stamp-classified">CLASSIFIED</div>
+              <div class="badge-seal">🛡️</div>
+              <h2 class="folder-title">IDENTITY RECONSTRUCTION</h2>
+              <p class="mono" style="font-size: 11px; color: #423624; margin-bottom: 20px; line-height: 1.4;">Before we can locate the missing fortune, we must reconstruct the owner of the timeline.</p>
+              
+              <div class="onboarding-form">
+                <div id="formErrorLabel" style="color: #8a1414; font-size: 11px; font-weight: 800; text-align: center; display: none; margin-bottom: 10px;"></div>
+                
+                <div class="dossier-row" id="dossierNameGroup">
+                  <div class="input-group">
+                    <label for="inputName">Subject Name</label>
+                    <input type="text" id="inputName" placeholder="Reconstruct Subject Name" required autocomplete="off">
+                  </div>
+                  <div class="dossier-stamp">VERIFIED</div>
+                </div>
+                
+                <div class="input-row">
+                  <div class="dossier-row" id="dossierAgeGroup" style="flex:1;">
+                    <div class="input-group">
+                      <label for="inputAge">Age of Timeline</label>
+                      <input type="number" id="inputAge" placeholder="23" min="15" max="80" required>
+                    </div>
+                    <div class="dossier-stamp">VERIFIED</div>
+                  </div>
+                  <div class="dossier-row" id="dossierOccupGroup" style="flex:1.5;">
+                    <div class="input-group">
+                      <label for="inputOccupation">Current Occupation</label>
+                      <input type="text" id="inputOccupation" placeholder="e.g. Developer" required autocomplete="off">
+                    </div>
+                    <div class="dossier-stamp">VERIFIED</div>
+                  </div>
+                </div>
+                
+                <div class="input-row">
+                  <div class="dossier-row" id="dossierIncomeGroup" style="flex:1;">
+                    <div class="input-group">
+                      <label for="inputIncome">Monthly Cashflow Signal (₹)</label>
+                      <input type="number" id="inputIncome" placeholder="e.g. 60000" min="10000" required>
+                    </div>
+                    <div class="dossier-stamp">VERIFIED</div>
+                  </div>
+                  <div class="dossier-row" id="dossierGoalGroup" style="flex:1;">
+                    <div class="input-group">
+                      <label for="inputGoal">Asset Under Investigation</label>
+                      <select id="inputGoal">
+                        <option value="KTM Duke">🏍️ KTM Duke Bike</option>
+                        <option value="Electric SUV">🚗 Electric SUV Car</option>
+                        <option value="Goa Trip">✈️ Goa Vacation</option>
+                        <option value="Dream Home">🏡 Apartment Downpayment</option>
+                        <option value="Wedding">💍 Grand Wedding</option>
+                        <option value="Financial Freedom">💰 Financial Freedom Fund</option>
+                      </select>
+                    </div>
+                    <div class="dossier-stamp">VERIFIED</div>
+                  </div>
+                </div>
+                
+                <div class="input-row">
+                  <div class="dossier-row" id="dossierCostGroup" style="width:100%;">
+                    <div class="input-group">
+                      <label for="inputGoalCost">Estimated Asset Value (₹)</label>
+                      <input type="number" id="inputGoalCost" placeholder="250000" min="10000" required>
+                    </div>
+                    <div class="dossier-stamp">VERIFIED</div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-primary ripple-btn" id="btnVerifyDossier">Verify Identity & Reconstruct Timeline</button>
+            </div>
+            
+            <div class="folder-inside" id="folderInside">
+              <div class="akimbo-story">
+                <h3 class="story-header" id="twistTitle" style="color: var(--bright); text-transform: uppercase;">SYNCHRONIZING CASE FILE...</h3>
+                <div class="story-paragraph" id="twistLine1" style="font-family: var(--font-mono); font-size:14px; opacity:0.8;">Syncing timeline logs with credit registries...</div>
+                <div class="story-paragraph" id="twistLine2" style="font-family: var(--font-mono); font-size:14px; opacity:0.8;">Compounded leakage threshold calculated.</div>
+                <div class="story-paragraph highlight-gold" id="twistReveal" style="display:none; font-size: 16px; border-left: 2px solid var(--gold); padding-left: 12px; line-height:1.5;">
+                  Case Profile synced.<br>
+                  Forensic algorithms detect missing wealth matching your timeline usually ranges between <span class="text-bright" style="font-weight:800;">₹8,00,000</span> and <span class="text-bright" style="font-weight:800;">₹24,0,000</span>.<br><br>
+                  We must proceed to clue extraction immediately.
+                </div>
+                <button class="btn-primary pulse-glow-btn" id="btnGoToInterrogation" style="display:none;">Proceed to Interrogation Logs</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: EVIDENCE COLLECTION (INTERROGATION LOGS) -->
+      <section class="screen" id="screenEvidenceCollection">
+        <div class="interview-layout evidence-room-layout">
+          <!-- Interrogation Desk Clues Gathering -->
+          <div class="evidence-gathering-area">
+            <div class="evidence-header-block">
+              <div class="eyebrow text-danger">TRANSCRIPT EVIDENCE</div>
+              <h2 class="section-title">Interrogation Transcripts</h2>
+              <p class="section-desc">Extracting statements to reconstruct the timeline flow.</p>
+            </div>
+            
+            <div class="evidence-cards-container" id="evidenceCardsContainer">
+              <!-- Interrogation Log cards load here step by step -->
             </div>
           </div>
 
           <!-- Live DNA Map Sidebar (Bloomberg Style) -->
           <div class="dna-hud-sidebar">
             <div class="hud-box">
-              <h4 class="hud-box-title">DNA INTELLIGENCE PROFILE</h4>
+              <h4 class="hud-box-title">CRIME SCENE INTEGRITY</h4>
               <div class="hud-data-row">
-                <span>SUBJECT NAME:</span>
+                <span>VICTIM:</span>
                 <span class="mono text-bright" id="hudName">Rahul</span>
               </div>
               <div class="hud-data-row">
                 <span>INVESTIGATION PHASE:</span>
-                <span class="mono text-warn">DISCOVERY</span>
+                <span class="mono text-warn">INTERROGATION</span>
               </div>
               <div class="hud-progress-container">
-                <span class="hud-progress-label">INTELLIGENCE SYNC RATE</span>
+                <span class="hud-progress-label">EVIDENCE INTEGRATION RATE</span>
                 <div class="hud-progress-bar"><div class="hud-progress-fill" id="dnaSyncBar" style="width: 25%"></div></div>
                 <span class="hud-progress-val mono" id="dnaSyncVal">25%</span>
               </div>
@@ -183,130 +310,253 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      <!-- SCREEN 2: WEALTH LEAK CATEGORIES -->
-      <section class="screen" id="screenLeaks">
+      <!-- SCREEN 4B: INITIAL EVIDENCE REVIEW (MINI WIN) -->
+      <section class="screen" id="screenEvidenceReview">
         <div class="center-content">
-          <div class="eyebrow">DIAGNOSTIC TARGETS</div>
-          <h2 class="section-title">Select leaks active in your daily life</h2>
-          <p class="section-desc">Which category is most likely bleeding your future wealth? Select all that apply.</p>
-          
-          <div class="leaks-grid">
-            <div class="leak-card" data-category="food">
-              <div class="leak-card-icon">🍔</div>
-              <div class="leak-card-title">Food & Convenience</div>
-              <div class="leak-card-desc">Swiggy, Zomato, Starbucks, snacks</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
-            </div>
-            <div class="leak-card" data-category="lifestyle">
-              <div class="leak-card-icon">🛍️</div>
-              <div class="leak-card-title">Lifestyle Spending</div>
-              <div class="leak-card-desc">Impulse shopping, clothing, gadgets</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
-            </div>
-            <div class="leak-card" data-category="subscriptions">
-              <div class="leak-card-icon">📺</div>
-              <div class="leak-card-title">Subscriptions</div>
-              <div class="leak-card-desc">Netflix, Spotify, Cloud, ChatGPT, Gym</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
-            </div>
-            <div class="leak-card" data-category="travel">
-              <div class="leak-card-icon">✈️</div>
-              <div class="leak-card-title">Experiences & Travel</div>
-              <div class="leak-card-desc">Weekend outings, cabs, stays</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
-            </div>
-            <div class="leak-card" data-category="debt">
-              <div class="leak-card-icon">💳</div>
-              <div class="leak-card-title">Debt & EMIs</div>
-              <div class="leak-card-desc">No-cost EMIs, credit cards, BNPL</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
-            </div>
-            <div class="leak-card" data-category="habits">
-              <div class="leak-card-icon">☕</div>
-              <div class="leak-card-title">Daily Habits</div>
-              <div class="leak-card-desc">Chai, cigarettes, loose daily spends</div>
-              <div class="leak-card-checkbox"></div>
-              <div class="evidence-stamp">EVIDENCE DETECTED</div>
+          <div class="eyebrow text-gold">MINI WIN // PRELIMINARY SYNC</div>
+          <div class="discovery-card card" style="width:100%; max-width: 550px; text-align: left; position: relative;">
+            <div class="mono text-warn" style="font-size:11px; margin-bottom:12px; font-weight:800; letter-spacing:0.05em;">INITIAL EVIDENCE REVIEW</div>
+            <h3 class="text-bright" style="font-size: 20px; font-weight: 800; margin-bottom: 12px;">We found enough evidence to begin.</h3>
+            
+            <p class="mono" style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">Interesting.</p>
+            
+            <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+              Your answers resemble profiles that typically experience:
+            </p>
+            <ul class="mono text-bright" style="list-style:none; padding-left: 0; line-height: 2.0; font-size:13px; margin-bottom: 24px;">
+              <li>• <span class="text-warn">Delayed investing patterns</span></li>
+              <li>• <span class="text-warn">Opportunity cost exposure</span></li>
+              <li>• <span class="text-warn">Wealth accumulation inefficiencies</span></li>
+            </ul>
+            
+            <p class="mono text-muted" style="font-size: 12px;">Further evidence may improve accuracy.</p>
+            
+            <div style="display:flex; justify-content:flex-end; margin-top:20px;">
+              <button class="btn-primary" id="btnGoToForensics">Proceed to Forensics Lab</button>
             </div>
           </div>
-
-          <button class="btn-primary transition-btn" id="btnConfirmLeaks" disabled>Lock Diagnostic Targets</button>
         </div>
       </section>
 
-      <!-- SCREEN 3: INTELLIGENCE MATRIX & PRE-INVESTIGATION PREDICTION -->
+      <!-- SCREEN 5: FINANCIAL FORENSICS LAB (FORENSIC EVIDENCE REQUEST) -->
+      <section class="screen" id="screenForensicLab">
+        <div class="center-content">
+          <div class="eyebrow">FORENSIC LAB</div>
+          
+          <div class="upload-dossier-box card" style="width:100%; max-width: 550px; text-align: left;">
+            <div class="box-header" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 12px; margin-bottom: 20px; display:flex; justify-content:space-between; align-items:center;">
+              <h3 class="text-bright" style="font-size:18px; font-family: var(--font-mono)">FORENSIC EVIDENCE REQUEST</h3>
+              <div class="confidence-badge mono text-warn" id="uploadConfidenceBadge" style="border: 1px solid var(--warn); padding: 2px 8px; border-radius: 4px; font-size: 11px;">CONFIDENCE: LOW</div>
+            </div>
+            
+            <p style="font-size: 14px; line-height: 1.5; margin-bottom: 20px;">
+              The investigation can proceed without evidence. However, transaction records may reveal hidden suspects.
+            </p>
+            
+            <div class="evidence-types-box" style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--surface-border);">
+              <div class="mono text-bright" style="font-size: 12px; font-weight: bold; margin-bottom: 10px;">Accepted Evidence:</div>
+              <ul class="mono text-muted" style="list-style: none; padding-left: 0; font-size: 12px; line-height: 1.8;">
+                <li>• Bank Statements (.pdf, .csv, .txt)</li>
+                <li>• Transaction Exports</li>
+                <li>• Spending Logs</li>
+              </ul>
+            </div>
+            
+            <!-- Drag and drop zone -->
+            <div class="upload-dropzone" id="uploadDropZone">
+              <span class="upload-icon">📁</span>
+              <span class="upload-text mono">DRAG & DROP BANK STATEMENT HERE</span>
+              <span class="upload-subtext">or click to select file from device</span>
+              <input type="file" id="bankStatementInput" style="display:none;" accept=".pdf,.csv,.txt,.xlsx,.xls">
+              
+              <!-- File status indicator -->
+              <div id="fileUploadStatus" class="mono text-bright" style="display:none; font-size:12px; margin-top:10px;"></div>
+            </div>
+            
+            <div class="security-privacy-note mono text-muted" style="margin-top: 15px; font-size: 10px; display: flex; align-items:center; gap: 6px;">
+              🔒 <span>Evidence Security: Encrypted & Temporary (Processed Locally)</span>
+            </div>
+            
+            <div class="dossier-actions-row" style="display: flex; justify-content: space-between; margin-top: 30px; gap: 12px;">
+              <button class="btn-primary btn-secondary-outline" id="btnSkipUpload" style="background: transparent; border: 1.5px solid var(--surface-border); color: var(--text);">Continue Investigation</button>
+              <button class="btn-primary" id="btnTriggerForensicScan" disabled>Process Uploaded Evidence</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 5B: FINANCIAL FORENSICS LAB (SCANNING PROGRESS & TYPEWRITING LOGS) -->
+      <section class="screen" id="screenForensicScan">
+        <div class="scan-wrapper">
+          <div class="scanner-header">
+            <h1 class="scanner-title mono text-bright">FINANCIAL FORENSICS LAB</h1>
+            <div class="scanner-subtitle">PROCESSING FILES · EVIDENCE DISCOVERY SEQUENCE ACTIVE</div>
+          </div>
+
+          <div class="scan-visuals" style="height: 80px;">
+            <div class="scan-laser-line"></div>
+            <div class="scan-overlay-grid"></div>
+          </div>
+
+          <div class="scan-console">
+            <div class="console-header">
+              <span class="console-dot text-bright">●</span>
+              <span class="mono">EVIDENCE DISCOVERY STREAM</span>
+            </div>
+            <div class="console-body" id="forensicScanConsole">
+              <!-- Logs print dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 6: FINANCIAL CRIME NETWORK -->
+      <section class="screen" id="screenLeaks">
+        <div class="center-content" style="max-width:900px; width:100%;">
+          <div class="eyebrow text-danger">FINANCIAL CRIME NETWORK</div>
+          <h2 class="section-title">Evidence Assembly Map</h2>
+          <p class="section-desc">We are highlighting targets responsible for the leakage. Click targets to flag active leak entities.</p>
+          
+          <div class="network-assembler-loader" id="networkLoader" style="display:none; margin: 40px 0; text-align:center;">
+            <div class="mono text-bright" id="networkLoaderText">ASSEMBLING NODE CONNECTIONS...</div>
+            <div class="hud-progress-bar" style="max-width:300px; margin: 15px auto;"><div class="hud-progress-fill" id="networkLoaderBar" style="width:0%;"></div></div>
+          </div>
+          
+          <div class="network-graph-area" id="networkContainer">
+            <div class="hud-grid-overlay"></div>
+            <svg class="network-svg" id="networkSVG" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></svg>
+            
+            <!-- Floating Node Buttons -->
+            <div class="network-node-item" data-category="food" style="top: 20%; left: 15%;">
+              <div class="node-icon">🍔</div>
+              <div class="node-title">Convenience Spending</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+            <div class="network-node-item" data-category="subscriptions" style="top: 15%; left: 70%;">
+              <div class="node-icon">📦</div>
+              <div class="node-title">Subscription Creep</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+            <div class="network-node-item" data-category="lifestyle" style="top: 50%; left: 45%;">
+              <div class="node-icon">🛍️</div>
+              <div class="node-title">Impulse Purchases</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+            <div class="network-node-item" data-category="debt" style="top: 75%; left: 18%;">
+              <div class="node-icon">💳</div>
+              <div class="node-title">Debt Drag</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+            <div class="network-node-item" data-category="travel" style="top: 78%; left: 75%;">
+              <div class="node-icon">🎮</div>
+              <div class="node-title">Investment Delay</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+            <div class="network-node-item" data-category="habits" style="top: 45%; left: 82%;">
+              <div class="node-icon">📈</div>
+              <div class="node-title">Missed Compounding</div>
+              <div class="suspect-tag-stamp">ACCUSED</div>
+            </div>
+          </div>
+          
+          <p class="mono text-muted text-center" style="font-size:12px; margin-top:20px; max-width:500px;">
+            Click [CONTINUE] to advance the investigation.
+          </p>
+
+          <button class="btn-primary transition-btn" id="btnConfirmLeaks" style="margin-top:20px;" disabled>CONTINUE</button>
+        </div>
+      </section>
+
+      <!-- SCREEN 7: CASE UPDATE TWIST -->
+      <section class="screen" id="screenTwist">
+        <div class="center-content">
+          <div class="eyebrow text-danger">⚠️ CASE UPDATE</div>
+          <div class="discovery-card card" style="width:100%; max-width: 550px; text-align: left; border-color: var(--danger); background: rgba(255,59,48,0.01);">
+            <h3 class="text-danger mono" style="font-size:22px; font-weight:800; margin-bottom:15px; letter-spacing:0.05em;">CASE UPDATE</h3>
+            <h4 class="text-bright" style="font-size: 18px; margin-bottom:12px; line-height:1.4;">Unexpected development.</h4>
+            <p style="font-size:15px; line-height: 1.6; margin-bottom: 15px;">
+              We entered this investigation expecting to find a spending problem.
+            </p>
+            <p class="highlight-gold" style="font-size: 16px; font-weight:600; line-height: 1.5; border-left: 2px solid var(--gold); padding-left: 12px; margin-bottom: 25px;">
+              The evidence suggests something more dangerous.<br>
+              The strongest suspect may not be what you spend.<br>
+              It may be what you delay.
+            </p>
+            <div style="display:flex; justify-content:flex-end;">
+              <button class="btn-primary" id="btnDismissTwist">Continue Investigation</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 8: PRELIMINARY FINDINGS -->
       <section class="screen" id="screenMatrix">
         <div class="matrix-layout">
-          <div class="matrix-side">
-            <div class="eyebrow">INTELLIGENCE CONTEXT</div>
-            <h2 class="section-title">Financial Network Mapping</h2>
-            <p class="section-desc">Resolving connections between your income, goals, and categories. Pinned elements showing data flows.</p>
+          <div class="matrix-side" style="grid-column: span 2; max-width:600px; margin: 0 auto; width:100%;">
+            <div class="eyebrow text-danger">FINDINGS FILE</div>
+            <h2 class="section-title">Preliminary Findings</h2>
+            <p class="section-desc">Reconstructing timelines reveals opportunity patterns matching your indicators.</p>
             
             <div class="matrix-prediction-box" id="predictionBox">
               <div class="prediction-header">
                 <span class="pred-glow"></span>
-                <h4>PRE-INVESTIGATION PREDICTION</h4>
+                <h4 id="findingsConfidenceBadge">Confidence Level: MODERATE</h4>
               </div>
               <div class="prediction-content">
-                <p class="prediction-intro">Based on your case profile and category tags, our diagnostic model predicts:</p>
-                <ul class="prediction-list">
-                  <li>🚨 <span class="text-warn">Losses undetected</span>: You are bleeding compounding capital in habits you don't track.</li>
-                  <li>💡 <span class="text-warn">Income efficiency</span>: Income isn't your hurdle; capital retention and system timing is.</li>
-                  <li>⏳ <span class="text-warn">Goal delays</span>: Your dream goal could be delayed by <strong id="predDelayYrs">4-8 years</strong>.</li>
+                <ul class="prediction-list" style="list-style:none; padding-left:0; margin:0;">
+                  <li style="margin-bottom: 14px; display:flex; align-items:center; gap:8px; font-size:15px;">✓ <strong class="text-bright">Your biggest threat may not be income.</strong></li>
+                  <li style="margin-bottom: 14px; display:flex; align-items:center; gap:8px; font-size:15px;">✓ <strong class="text-bright">Wealth loss appears gradual.</strong></li>
+                  <li style="margin-bottom: 14px; display:flex; align-items:center; gap:8px; font-size:15px;">✓ <strong class="text-bright">Delayed investing may be contributing.</strong></li>
+                  <li style="margin-bottom: 14px; display:flex; align-items:center; gap:8px; font-size:15px;">✓ <strong class="text-bright">Opportunity cost indicators detected.</strong></li>
                 </ul>
-                <div class="prediction-conclusion">Let's verify these vectors with a complete scan.</div>
               </div>
             </div>
 
-            <button class="btn-primary glow-red-to-green" id="btnStartScan">Run Money MRI Scan</button>
+            <div style="display:flex; justify-content:center; margin-top:30px;">
+              <button class="btn-primary" id="btnGoToSnapshot">View Evidence Board Snapshot</button>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="matrix-canvas-area">
-            <div class="hud-grid-overlay"></div>
-            <!-- Matrix Interactive Core -->
-            <div class="matrix-core">
-              <div class="matrix-node active" id="nodeIncome" style="top: 20%; left: 20%;">
-                <div class="node-glow"></div>
-                <div class="node-label">INCOME</div>
-                <div class="node-value mono" id="matrixValIncome">₹0/m</div>
+      <!-- SCREEN 8B: EVIDENCE BOARD SNAPSHOT -->
+      <section class="screen" id="screenEvidenceSnapshot">
+        <div class="center-content">
+          <div class="eyebrow">CASE OVERVIEW</div>
+          <div class="discovery-card card" style="width:100%; max-width: 550px; text-align: left;">
+            <div class="box-header" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 12px; margin-bottom: 20px;">
+              <h3 class="text-bright" style="font-size:18px; letter-spacing:0.05em; font-family: var(--font-mono)">CASE STATUS</h3>
+            </div>
+            
+            <div class="snapshot-details-grid mono" style="display:grid; grid-template-columns: 1fr; gap:14px; font-size:13px; margin-bottom: 30px;">
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Evidence Collected:</span>
+                <strong class="text-bright">COMPLETE</strong>
               </div>
-              <div class="matrix-node active" id="nodeSavings" style="top: 50%; left: 30%;">
-                <div class="node-glow"></div>
-                <div class="node-label">SAVINGS</div>
-                <div class="node-value mono" id="matrixValSavings">₹0/m</div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Persons of Interest:</span>
+                <strong class="text-bright">6</strong>
               </div>
-              <div class="matrix-node active" id="nodeExpenses" style="top: 30%; left: 75%;">
-                <div class="node-glow"></div>
-                <div class="node-label">EXPENSES</div>
-                <div class="node-value mono" id="matrixValExpenses">₹0/m</div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Primary Suspect:</span>
+                <strong class="text-warn">UNDER REVIEW</strong>
               </div>
-              <div class="matrix-node active" id="nodeInvestments" style="top: 75%; left: 45%;">
-                <div class="node-glow"></div>
-                <div class="node-label">INVESTMENTS</div>
-                <div class="node-value mono" id="matrixValInvestments">₹0/m</div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Investigation Confidence:</span>
+                <strong class="text-bright" id="snapshotConfidenceVal">MODERATE</strong>
               </div>
-              <div class="matrix-node active" id="nodeGoal" style="top: 65%; left: 80%;">
-                <div class="node-glow"></div>
-                <div class="node-label">GOAL</div>
-                <div class="node-value mono" id="matrixValGoal">₹0</div>
+              <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--surface-border); padding-bottom:6px;">
+                <span>Financial DNA:</span>
+                <strong class="text-warn">PARTIALLY RECONSTRUCTED</strong>
               </div>
-              <svg class="matrix-connections" id="matrixSVG">
-                <line x1="20%" y1="20%" x2="50%" y2="30%" class="matrix-line" />
-                <line x1="50%" y1="30%" x2="75%" y2="30%" class="matrix-line" />
-                <line x1="50%" y1="30%" x2="45%" y2="75%" class="matrix-line" />
-                <line x1="45%" y1="75%" x2="80%" y2="65%" class="matrix-line" />
-                <line x1="75%" y1="30%" x2="80%" y2="65%" class="matrix-line" />
-              </svg>
+            </div>
+            
+            <div style="display:flex; justify-content:center;">
+              <button class="btn-primary glow-red-to-green pulse-glow-btn" id="btnStartScan" style="padding: 16px 40px; font-size:16px;">RUN MONEY MRI</button>
             </div>
           </div>
         </div>
@@ -637,7 +887,7 @@
 
         <div class="vault-wrapper">
           <div class="eyebrow text-center">PERSONAL RECORD OFFICE</div>
-          <h2 class="section-title text-center">F.I.B. Financial Artifact Vault</h2>
+          <h2 class="section-title text-center">F.B.I. Financial Artifact Vault</h2>
           <p class="section-desc text-center">Click any artifact to open, verify details, and download for sharing.</p>
 
           <div class="vault-grid">
@@ -719,7 +969,7 @@
           <!-- Bottom Blueprint Action Block -->
           <div class="blueprint-block card">
             <h3 class="blueprint-title text-center text-bright">YOUR WEALTH ACCELERATION BLUEPRINT</h3>
-            <p class="blueprint-intro text-center">BlinkMoney F.I.B. has prepared your core recovery actions:</p>
+            <p class="blueprint-intro text-center">BlinkMoney F.B.I. has prepared your core recovery actions:</p>
             
             <div class="blueprint-summary-grid">
               <div class="blueprint-card">
