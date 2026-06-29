@@ -218,7 +218,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   opacity: 1;
   transform: translateY(0);
@@ -3083,9 +3083,10 @@ input[type="range"]::-webkit-slider-thumb:active {
 .center-content,
 .terminal-wrapper,
 .case-file-wrapper,
+.interview-layout,
 .evidence-split-layout,
 .forensic-split-layout,
 .network-map-wrapper,
 .matrix-layout {
-  margin: auto !important;
+  margin: 40px auto !important;
 }
