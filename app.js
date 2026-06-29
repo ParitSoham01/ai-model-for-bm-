@@ -298,15 +298,43 @@
   }
 
   /* ─────────────── SCREEN TRANSITION SYSTEM ─────────────── */
-  function navigateTo(targetScreenId) {
+  const screenHistory = [];
+
+  function navigateTo(targetScreenId, isBack = false) {
     const screens = document.querySelectorAll('.screen');
     const targetScreen = document.getElementById(targetScreenId);
+    if (!targetScreen) return;
     
     // Play transition sounds
     if (targetScreenId === 'screenScan') {
       playSound('scanner');
     } else {
       playSound('click');
+    }
+
+    const currentScreen = document.querySelector('.screen.active');
+    if (!isBack && currentScreen && currentScreen.id !== targetScreenId) {
+      screenHistory.push(currentScreen.id);
+    }
+
+    // Reset/Setup screen states contextually when going back
+    if (targetScreenId === 'screenCaseInitiation') {
+      const btnVerify = document.getElementById('btnVerifyDossier');
+      if (btnVerify) btnVerify.disabled = false;
+      document.querySelectorAll('#screenCaseInitiation input, #screenCaseInitiation select').forEach(el => el.disabled = false);
+      document.querySelectorAll('.dossier-row-group').forEach(el => el.classList.remove('stamped'));
+      const folderInside = document.getElementById('folderInside');
+      if (folderInside) folderInside.style.display = 'none';
+      const twistReveal = document.getElementById('twistReveal');
+      if (twistReveal) twistReveal.style.display = 'none';
+      const btnGoToInterrogation = document.getElementById('btnGoToInterrogation');
+      if (btnGoToInterrogation) btnGoToInterrogation.style.display = 'none';
+    } else if (targetScreenId === 'screenEvidenceCollection') {
+      startEvidenceCollection();
+    } else if (targetScreenId === 'screenForensicLab') {
+      initForensicUpload();
+    } else if (targetScreenId === 'screenLeaks') {
+      initFinancialCrimeNetwork();
     }
 
     screens.forEach(s => {
@@ -327,6 +355,18 @@
       }
     });
   }
+
+  // Wire up back button clicks globally
+  document.addEventListener('click', (e) => {
+    const backBtn = e.target.closest('.btn-back');
+    if (backBtn) {
+      e.preventDefault();
+      if (screenHistory.length > 0) {
+        const prevScreenId = screenHistory.pop();
+        navigateTo(prevScreenId, true);
+      }
+    }
+  });
 
   /* ─────────────── SCREEN 0A: COLD OPEN ─────────────── */
   const btnEnterCrimeScene = document.getElementById('btnEnterCrimeScene');
@@ -1013,11 +1053,16 @@ We need your help.`;
 
   /* ─────────────── SCREEN 9: MATRIX & PREDICTIONS ─────────────── */
   function setupMatrixValues() {
-    document.getElementById('matrixValIncome').textContent = formatCurrency(state.income);
-    document.getElementById('matrixValSavings').textContent = formatCurrency(state.savings);
-    document.getElementById('matrixValExpenses').textContent = formatCurrency(state.expenses);
-    document.getElementById('matrixValInvestments').textContent = formatCurrency(state.investments);
-    document.getElementById('matrixValGoal').textContent = formatCurrency(state.goalCost);
+    const elIncome = document.getElementById('matrixValIncome');
+    if (elIncome) elIncome.textContent = formatCurrency(state.income);
+    const elSavings = document.getElementById('matrixValSavings');
+    if (elSavings) elSavings.textContent = formatCurrency(state.savings);
+    const elExpenses = document.getElementById('matrixValExpenses');
+    if (elExpenses) elExpenses.textContent = formatCurrency(state.expenses);
+    const elInvestments = document.getElementById('matrixValInvestments');
+    if (elInvestments) elInvestments.textContent = formatCurrency(state.investments);
+    const elGoal = document.getElementById('matrixValGoal');
+    if (elGoal) elGoal.textContent = formatCurrency(state.goalCost);
 
     // Calculate prediction delay
     const currentRouteMonths = Math.round(state.goalCost / ((state.savings + state.investments) || 1));
