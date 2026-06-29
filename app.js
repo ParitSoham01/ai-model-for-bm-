@@ -301,6 +301,7 @@
   const screenHistory = [];
 
   function navigateTo(targetScreenId, isBack = false) {
+    window.scrollTo(0, 0);
     const screens = document.querySelectorAll('.screen');
     const targetScreen = document.getElementById(targetScreenId);
     if (!targetScreen) return;
@@ -412,9 +413,14 @@ The timeline investigation is active.`;
           playSound('click');
         }
         
-        let delay = 20;
-        if (char === '\n') delay = 120;
-        else if (char === '.' || char === '?' || char === ':') delay = 300;
+        let delay = 4;
+        if (char === '\n') delay = 20;
+        else if (char === '.' || char === '?' || char === ':') delay = 40;
+        
+        el.scrollTop = el.scrollHeight;
+        const wrapper = el.closest('.terminal-wrapper');
+        if (wrapper) wrapper.scrollTop = wrapper.scrollHeight;
+        window.scrollTo(0, document.body.scrollHeight);
         
         setTimeout(type, delay);
       } else {
@@ -427,7 +433,7 @@ The timeline investigation is active.`;
         }
       }
     }
-    setTimeout(type, 500);
+    setTimeout(type, 200);
   }
 
   function playSirenHum() {
@@ -507,8 +513,13 @@ We need your help.`;
           playSound('click');
         }
         
-        let delay = 15;
-        if (char === '\n') delay = 80;
+        let delay = 4;
+        if (char === '\n') delay = 15;
+        
+        el.scrollTop = el.scrollHeight;
+        const wrapper = el.closest('.terminal-wrapper');
+        if (wrapper) wrapper.scrollTop = wrapper.scrollHeight;
+        window.scrollTo(0, document.body.scrollHeight);
         
         setTimeout(type, delay);
       } else {
@@ -521,7 +532,7 @@ We need your help.`;
         }
       }
     }
-    setTimeout(type, 500);
+    setTimeout(type, 200);
   }
 
   const btnAcceptDispatch = document.getElementById('btnAcceptDispatch');
